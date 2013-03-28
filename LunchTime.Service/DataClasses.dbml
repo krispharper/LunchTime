@@ -1,0 +1,20 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="LunchTime" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=nydevkhsql01;Initial Catalog=LunchTime;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="LunchTimeConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.Restaurants" Member="Restaurants">
+    <Type Name="Restaurant">
+      <Column Name="RestaurantId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="Name" Type="System.String" DbType="VarChar(50) NOT NULL" CanBeNull="false" />
+      <Association Name="Restaurant_ArrivalTime" Member="ArrivalTimes" ThisKey="RestaurantId" OtherKey="RestaurantId" Type="ArrivalTime" />
+    </Type>
+  </Table>
+  <Table Name="dbo.ArrivalTimes" Member="ArrivalTimes">
+    <Type Name="ArrivalTime">
+      <Column Name="ArrivalTimesId" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="RestaurantId" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="ArrivalTime" Member="TimeArried" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="Date" Type="System.DateTime" DbType="Date" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="Time" Type="System.TimeSpan" DbType="Time" IsDbGenerated="true" CanBeNull="true" UpdateCheck="Never" />
+      <Association Name="Restaurant_ArrivalTime" Member="Restaurant" ThisKey="RestaurantId" OtherKey="RestaurantId" Type="Restaurant" IsForeignKey="true" DeleteRule="CASCADE" DeleteOnNull="true" />
+    </Type>
+  </Table>
+</Database>

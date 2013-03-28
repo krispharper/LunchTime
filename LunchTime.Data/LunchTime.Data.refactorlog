@@ -1,0 +1,24 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="c1785c61-0a43-43a3-9567-78afb96c4641" ChangeDateTime="03/26/2013 20:38:33">
+    <Property Name="ElementName" Value="[dbo].[Restaurants].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Restaurants]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="RestaurantId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="b8ff51f4-4b79-4727-9247-b2c4c548b49c" ChangeDateTime="03/26/2013 20:39:38">
+    <Property Name="ElementName" Value="[dbo].[ArrivalTimes].[Id]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArrivalTimes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArrivalTimesId" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="c0454e1a-48c5-4fb9-9fd4-ada514d26cb4" ChangeDateTime="03/27/2013 14:50:10">
+    <Property Name="ElementName" Value="[dbo].[ArrivalTimes].[Time]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[ArrivalTimes]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="ArrivalTime" />
+  </Operation>
+</Operations>
