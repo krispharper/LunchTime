@@ -30,12 +30,12 @@ namespace LunchTime.Service
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void InsertRestaurant(Restaurant instance);
-    partial void UpdateRestaurant(Restaurant instance);
-    partial void DeleteRestaurant(Restaurant instance);
     partial void InsertArrivalTime(ArrivalTime instance);
     partial void UpdateArrivalTime(ArrivalTime instance);
     partial void DeleteArrivalTime(ArrivalTime instance);
+    partial void InsertRestaurant(Restaurant instance);
+    partial void UpdateRestaurant(Restaurant instance);
+    partial void DeleteRestaurant(Restaurant instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -68,14 +68,6 @@ namespace LunchTime.Service
 			OnCreated();
 		}
 		
-		public System.Data.Linq.Table<Restaurant> Restaurants
-		{
-			get
-			{
-				return this.GetTable<Restaurant>();
-			}
-		}
-		
 		public System.Data.Linq.Table<ArrivalTime> ArrivalTimes
 		{
 			get
@@ -83,119 +75,13 @@ namespace LunchTime.Service
 				return this.GetTable<ArrivalTime>();
 			}
 		}
-	}
-	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Restaurants")]
-	public partial class Restaurant : INotifyPropertyChanging, INotifyPropertyChanged
-	{
 		
-		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
-		
-		private int _RestaurantId;
-		
-		private string _Name;
-		
-		private EntitySet<ArrivalTime> _ArrivalTimes;
-		
-    #region Extensibility Method Definitions
-    partial void OnLoaded();
-    partial void OnValidate(System.Data.Linq.ChangeAction action);
-    partial void OnCreated();
-    partial void OnRestaurantIdChanging(int value);
-    partial void OnRestaurantIdChanged();
-    partial void OnNameChanging(string value);
-    partial void OnNameChanged();
-    #endregion
-		
-		public Restaurant()
-		{
-			this._ArrivalTimes = new EntitySet<ArrivalTime>(new Action<ArrivalTime>(this.attach_ArrivalTimes), new Action<ArrivalTime>(this.detach_ArrivalTimes));
-			OnCreated();
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestaurantId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
-		public int RestaurantId
+		public System.Data.Linq.Table<Restaurant> Restaurants
 		{
 			get
 			{
-				return this._RestaurantId;
+				return this.GetTable<Restaurant>();
 			}
-			set
-			{
-				if ((this._RestaurantId != value))
-				{
-					this.OnRestaurantIdChanging(value);
-					this.SendPropertyChanging();
-					this._RestaurantId = value;
-					this.SendPropertyChanged("RestaurantId");
-					this.OnRestaurantIdChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="VarChar(50) NOT NULL", CanBeNull=false)]
-		public string Name
-		{
-			get
-			{
-				return this._Name;
-			}
-			set
-			{
-				if ((this._Name != value))
-				{
-					this.OnNameChanging(value);
-					this.SendPropertyChanging();
-					this._Name = value;
-					this.SendPropertyChanged("Name");
-					this.OnNameChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurant_ArrivalTime", Storage="_ArrivalTimes", ThisKey="RestaurantId", OtherKey="RestaurantId")]
-		public EntitySet<ArrivalTime> ArrivalTimes
-		{
-			get
-			{
-				return this._ArrivalTimes;
-			}
-			set
-			{
-				this._ArrivalTimes.Assign(value);
-			}
-		}
-		
-		public event PropertyChangingEventHandler PropertyChanging;
-		
-		public event PropertyChangedEventHandler PropertyChanged;
-		
-		protected virtual void SendPropertyChanging()
-		{
-			if ((this.PropertyChanging != null))
-			{
-				this.PropertyChanging(this, emptyChangingEventArgs);
-			}
-		}
-		
-		protected virtual void SendPropertyChanged(String propertyName)
-		{
-			if ((this.PropertyChanged != null))
-			{
-				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
-			}
-		}
-		
-		private void attach_ArrivalTimes(ArrivalTime entity)
-		{
-			this.SendPropertyChanging();
-			entity.Restaurant = this;
-		}
-		
-		private void detach_ArrivalTimes(ArrivalTime entity)
-		{
-			this.SendPropertyChanging();
-			entity.Restaurant = null;
 		}
 	}
 	
@@ -209,7 +95,7 @@ namespace LunchTime.Service
 		
 		private int _RestaurantId;
 		
-		private System.DateTime _TimeArried;
+		private System.DateTime _TimeArrived;
 		
 		private System.Nullable<System.DateTime> _Date;
 		
@@ -225,8 +111,8 @@ namespace LunchTime.Service
     partial void OnArrivalTimesIdChanged();
     partial void OnRestaurantIdChanging(int value);
     partial void OnRestaurantIdChanged();
-    partial void OnTimeArriedChanging(System.DateTime value);
-    partial void OnTimeArriedChanged();
+    partial void OnTimeArrivedChanging(System.DateTime value);
+    partial void OnTimeArrivedChanged();
     partial void OnDateChanging(System.Nullable<System.DateTime> value);
     partial void OnDateChanged();
     partial void OnTimeChanging(System.Nullable<System.TimeSpan> value);
@@ -283,22 +169,22 @@ namespace LunchTime.Service
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ArrivalTime", Storage="_TimeArried", DbType="DateTime NOT NULL")]
-		public System.DateTime TimeArried
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="ArrivalTime", Storage="_TimeArrived", DbType="DateTime NOT NULL")]
+		public System.DateTime TimeArrived
 		{
 			get
 			{
-				return this._TimeArried;
+				return this._TimeArrived;
 			}
 			set
 			{
-				if ((this._TimeArried != value))
+				if ((this._TimeArrived != value))
 				{
-					this.OnTimeArriedChanging(value);
+					this.OnTimeArrivedChanging(value);
 					this.SendPropertyChanging();
-					this._TimeArried = value;
-					this.SendPropertyChanged("TimeArried");
-					this.OnTimeArriedChanged();
+					this._TimeArrived = value;
+					this.SendPropertyChanged("TimeArrived");
+					this.OnTimeArrivedChanged();
 				}
 			}
 		}
@@ -395,6 +281,120 @@ namespace LunchTime.Service
 			{
 				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
 			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Restaurants")]
+	public partial class Restaurant : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _RestaurantId;
+		
+		private string _Name;
+		
+		private EntitySet<ArrivalTime> _ArrivalTimes;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void OnRestaurantIdChanging(int value);
+    partial void OnRestaurantIdChanged();
+    partial void OnNameChanging(string value);
+    partial void OnNameChanged();
+    #endregion
+		
+		public Restaurant()
+		{
+			this._ArrivalTimes = new EntitySet<ArrivalTime>(new Action<ArrivalTime>(this.attach_ArrivalTimes), new Action<ArrivalTime>(this.detach_ArrivalTimes));
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RestaurantId", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int RestaurantId
+		{
+			get
+			{
+				return this._RestaurantId;
+			}
+			set
+			{
+				if ((this._RestaurantId != value))
+				{
+					this.OnRestaurantIdChanging(value);
+					this.SendPropertyChanging();
+					this._RestaurantId = value;
+					this.SendPropertyChanged("RestaurantId");
+					this.OnRestaurantIdChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this.OnNameChanging(value);
+					this.SendPropertyChanging();
+					this._Name = value;
+					this.SendPropertyChanged("Name");
+					this.OnNameChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.AssociationAttribute(Name="Restaurant_ArrivalTime", Storage="_ArrivalTimes", ThisKey="RestaurantId", OtherKey="RestaurantId")]
+		public EntitySet<ArrivalTime> ArrivalTimes
+		{
+			get
+			{
+				return this._ArrivalTimes;
+			}
+			set
+			{
+				this._ArrivalTimes.Assign(value);
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+		
+		private void attach_ArrivalTimes(ArrivalTime entity)
+		{
+			this.SendPropertyChanging();
+			entity.Restaurant = this;
+		}
+		
+		private void detach_ArrivalTimes(ArrivalTime entity)
+		{
+			this.SendPropertyChanging();
+			entity.Restaurant = null;
 		}
 	}
 }

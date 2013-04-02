@@ -14,7 +14,7 @@
       <xs:element minOccurs="0" name="Restaurant" nillable="true" type="tns:Restaurant" />
       <xs:element minOccurs="0" name="RestaurantId" type="xs:int" />
       <xs:element minOccurs="0" name="Time" nillable="true" type="ser:duration" />
-      <xs:element minOccurs="0" name="TimeArried" type="xs:dateTime" />
+      <xs:element minOccurs="0" name="TimeArrived" type="xs:dateTime" />
     </xs:sequence>
   </xs:complexType>
   <xs:element name="ArrivalTime" nillable="true" type="tns:ArrivalTime" />

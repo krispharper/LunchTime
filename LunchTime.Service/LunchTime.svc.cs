@@ -21,34 +21,10 @@ namespace LunchTime.Service
             return (new DataClassesDataContext()).Restaurants.ToList();
         }
 
-        public void InsertArrivalTime(string name, DateTime time)
+        public void InsertArrivalTimes(IEnumerable<ArrivalTime> arrivalTimes)
         {
             var database = new DataClassesDataContext();
-            Restaurant restaurant = database.Restaurants.FirstOrDefault(r => r.Name == name);
-
-            if (restaurant == default(Restaurant))
-                return;
-
-            var arrivalTime = new ArrivalTime();
-            arrivalTime.TimeArried = time;
-            arrivalTime.Restaurant = restaurant;
-            database.ArrivalTimes.InsertOnSubmit(arrivalTime);
-            database.SubmitChanges();
-        }
-
-        public void InsertRestaurant(string name)
-        {
-            if (name == null)
-                throw new ArgumentNullException("name");
-
-            var database = new DataClassesDataContext();
-
-            if (database.Restaurants.FirstOrDefault(r => r.Name == name) != default(Restaurant))
-                return;
-
-            var restaurant = new Restaurant();
-            restaurant.Name = name;
-            database.Restaurants.InsertOnSubmit(restaurant);
+            database.ArrivalTimes.InsertAllOnSubmit(arrivalTimes);
             database.SubmitChanges();
         }
     }

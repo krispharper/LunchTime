@@ -38,7 +38,7 @@ namespace LunchTime.AddIn.LunchTimeService {
         private System.Nullable<System.TimeSpan> TimeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeArriedField;
+        private System.DateTime TimeArrivedField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -116,14 +116,14 @@ namespace LunchTime.AddIn.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime TimeArried {
+        public System.DateTime TimeArrived {
             get {
-                return this.TimeArriedField;
+                return this.TimeArrivedField;
             }
             set {
-                if ((this.TimeArriedField.Equals(value) != true)) {
-                    this.TimeArriedField = value;
-                    this.RaisePropertyChanged("TimeArried");
+                if ((this.TimeArrivedField.Equals(value) != true)) {
+                    this.TimeArrivedField = value;
+                    this.RaisePropertyChanged("TimeArrived");
                 }
             }
         }
@@ -225,11 +225,8 @@ namespace LunchTime.AddIn.LunchTimeService {
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetRestaurants", ReplyAction="http://tempuri.org/ILunchTime/GetRestaurantsResponse")]
         LunchTime.AddIn.LunchTimeService.Restaurant[] GetRestaurants();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTime", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimeResponse")]
-        void InsertArrivalTime(string name, System.DateTime time);
-        
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertRestaurant", ReplyAction="http://tempuri.org/ILunchTime/InsertRestaurantResponse")]
-        void InsertRestaurant(string name);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimesResponse")]
+        void InsertArrivalTimes(LunchTime.AddIn.LunchTimeService.ArrivalTime[] arrivalTimes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
@@ -267,12 +264,8 @@ namespace LunchTime.AddIn.LunchTimeService {
             return base.Channel.GetRestaurants();
         }
         
-        public void InsertArrivalTime(string name, System.DateTime time) {
-            base.Channel.InsertArrivalTime(name, time);
-        }
-        
-        public void InsertRestaurant(string name) {
-            base.Channel.InsertRestaurant(name);
+        public void InsertArrivalTimes(LunchTime.AddIn.LunchTimeService.ArrivalTime[] arrivalTimes) {
+            base.Channel.InsertArrivalTimes(arrivalTimes);
         }
     }
 }

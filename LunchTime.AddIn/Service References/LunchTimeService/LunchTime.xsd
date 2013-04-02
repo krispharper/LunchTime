@@ -25,27 +25,14 @@
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="InsertArrivalTime">
+  <xs:element name="InsertArrivalTimes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="time" type="xs:dateTime" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/LunchTime.Service" minOccurs="0" name="arrivalTimes" nillable="true" type="q3:ArrayOfArrivalTime" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
-  <xs:element name="InsertArrivalTimeResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertRestaurant">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertRestaurantResponse">
+  <xs:element name="InsertArrivalTimesResponse">
     <xs:complexType>
       <xs:sequence />
     </xs:complexType>

@@ -157,9 +157,28 @@
     can be found.
   -->
   <ItemGroup>
+    <Compile Include="AddRestaurant.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="AddRestaurant.Designer.cs">
+      <DependentUpon>AddRestaurant.cs</DependentUpon>
+    </Compile>
+    <Compile Include="ArrivalTime.cs" />
+    <Compile Include="ConfirmationWindow.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="ConfirmationWindow.Designer.cs">
+      <DependentUpon>ConfirmationWindow.cs</DependentUpon>
+    </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
+    <EmbeddedResource Include="AddRestaurant.resx">
+      <DependentUpon>AddRestaurant.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="ConfirmationWindow.resx">
+      <DependentUpon>ConfirmationWindow.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

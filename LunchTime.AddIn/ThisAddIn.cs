@@ -13,7 +13,6 @@ namespace LunchTime.AddIn
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
             LunchTime.AddIn.Globals.Ribbons.Ribbon.RibbonType = "Microsoft.Outlook.Explorer";
-            System.Windows.Forms.MessageBox.Show("test");
         }
 
         private void ThisAddIn_Shutdown(object sender, System.EventArgs e)

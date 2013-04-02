@@ -31,7 +31,7 @@ namespace WpfApplication1
             {
                 //var data = service.GetData();
                 this.DataGrid.ItemsSource = service.GetArrivalTimes();
-                service.InsertArrivalTime("Ambrosia", new DateTime(2013, 3, 27, 11, 47, 0));
+                //service.InsertArrivalTime("Ambrosia", new DateTime(2013, 3, 27, 11, 47, 0));
             }
         }
     }

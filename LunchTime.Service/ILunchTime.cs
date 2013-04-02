@@ -18,9 +18,6 @@ namespace LunchTime.Service
         List<Restaurant> GetRestaurants();
 
         [OperationContract]
-        void InsertArrivalTime(string name, DateTime time);
-
-        [OperationContract]
-        void InsertRestaurant(string name);
+        void InsertArrivalTimes(IEnumerable<ArrivalTime> arrivalTimes);
     }
 }
