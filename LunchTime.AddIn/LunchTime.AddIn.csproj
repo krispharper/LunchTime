@@ -170,6 +170,7 @@
     <Compile Include="ConfirmationWindow.Designer.cs">
       <DependentUpon>ConfirmationWindow.cs</DependentUpon>
     </Compile>
+    <Compile Include="ConversionFunctions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -218,17 +219,20 @@
     <None Include="Service References\LunchTimeService\LunchTime.AddIn.LunchTimeService.ArrivalTime.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\LunchTimeService\LunchTime.AddIn.LunchTimeService.Restaurant.datasource">
+    <None Include="Service References\LunchTimeService\LunchTime.AddIn.LunchTimeService.RestaurantData.datasource">
       <DependentUpon>Reference.svcmap</DependentUpon>
     </None>
-    <None Include="Service References\LunchTimeService\LunchTime.wsdl" />
     <None Include="Service References\LunchTimeService\LunchTime.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LunchTimeService\LunchTime1.xsd">
+    <None Include="Service References\LunchTimeService\LunchTime1.wsdl" />
+    <None Include="Service References\LunchTimeService\LunchTime3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LunchTimeService\LunchTime2.xsd">
+    <None Include="Service References\LunchTimeService\LunchTime31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LunchTimeService\LunchTime32.xsd">
       <SubType>Designer</SubType>
     </None>
     <None Include="ThisAddIn.Designer.xml">
@@ -246,9 +250,6 @@
     <WCFMetadataStorage Include="Service References\LunchTimeService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\LunchTimeService\LunchTime.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\LunchTimeService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -259,6 +260,9 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LunchTimeService\LunchTime1.disco" />
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

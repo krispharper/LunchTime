@@ -13,7 +13,7 @@ namespace LunchTime.AddIn
             set;
         }
 
-        public DateTime Time
+        public DateTime TimeArrived
         {
             get;
             set;
@@ -28,8 +28,14 @@ namespace LunchTime.AddIn
         public ArrivalTime(string restaurant, DateTime arrivalTime, string ID)
         {
             this.Restaurant = restaurant;
-            this.Time = arrivalTime;
+            this.TimeArrived = arrivalTime;
             this.ID = ID;
+        }
+
+        public ArrivalTime(LunchTimeService.ArrivalTimeData arrivalTime)
+        {
+            this.Restaurant = arrivalTime.Restaurant.Name;
+            this.TimeArrived = arrivalTime.TimeArrived;
         }
     }
 }

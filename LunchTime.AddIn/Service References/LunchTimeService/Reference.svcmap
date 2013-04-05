@@ -21,11 +21,12 @@
     <MetadataSource Address="http://nydevkhsql01/LunchTime/LunchTime.svc" Protocol="http" SourceId="1" />
   </MetadataSources>
   <Metadata>
-    <MetadataFile FileName="LunchTime.xsd" MetadataType="Schema" ID="6235e44f-54a2-4d7f-a61f-9445ee8eafdc" SourceId="1" SourceUrl="http://nydevkhsql01/LunchTime/LunchTime.svc?xsd=xsd0" />
-    <MetadataFile FileName="LunchTime1.xsd" MetadataType="Schema" ID="7017137f-b12d-467f-9a67-6624088c9379" SourceId="1" SourceUrl="http://nydevkhsql01/LunchTime/LunchTime.svc?xsd=xsd2" />
-    <MetadataFile FileName="LunchTime.wsdl" MetadataType="Wsdl" ID="c414e271-4e8c-4c40-a23a-90de2ff4ff29" SourceId="1" SourceUrl="http://nydevkhsql01/LunchTime/LunchTime.svc?wsdl" />
-    <MetadataFile FileName="LunchTime2.xsd" MetadataType="Schema" ID="e1551b14-24c5-408b-b361-36edb09efb56" SourceId="1" SourceUrl="http://nydevkhsql01/LunchTime/LunchTime.svc?xsd=xsd1" />
-    <MetadataFile FileName="LunchTime.disco" MetadataType="Disco" ID="4ebe7f64-f99f-4db7-aac8-939c52fe2e8f" SourceId="1" SourceUrl="http://nydevkhsql01/LunchTime/LunchTime.svc?disco" />
+    <MetadataFile FileName="LunchTime3.xsd" MetadataType="Schema" ID="c5da8c67-7a21-45bb-80bb-659ee45b5e3b" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd2" />
+    <MetadataFile FileName="LunchTime31.xsd" MetadataType="Schema" ID="408b2e29-9cb5-4e60-96b6-aeeb07e2746d" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd1" />
+    <MetadataFile FileName="LunchTime32.xsd" MetadataType="Schema" ID="3cf4503d-4d38-4a5a-85f3-a7948f6d2bb0" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd0" />
+    <MetadataFile FileName="LunchTime1.wsdl" MetadataType="Wsdl" ID="972fd4a9-4b6e-44e6-997f-3d1471bbba32" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?wsdl" />
+    <MetadataFile FileName="LunchTime1.disco" MetadataType="Disco" ID="5fe4b7d1-ae30-435c-acef-80f163557da4" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?disco" />
+    <MetadataFile FileName="LunchTime.xsd" MetadataType="Schema" ID="45818747-fa73-4671-999d-401faee77a20" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>
     <ExtensionFile FileName="configuration91.svcinfo" Name="configuration91.svcinfo" />

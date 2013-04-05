@@ -17,74 +17,78 @@ namespace LunchTime.AddIn
             set;
         }
 
-        internal List<ArrivalTime> ArrivalTimes
+        internal BindingList<ArrivalTime> ArrivalTimes
         {
-            get { return this.gvData.DataSource as List<ArrivalTime>; }
+            get { return this.gvData.DataSource as BindingList<ArrivalTime>; }
         }
 
         public ConfirmationWindow(IEnumerable<ArrivalTime> arrivalTimes)
         {
-            if (arrivalTimes.Count() < 1)
-            {
-                MessageBox.Show("No arrival time messages found in Inbox.");
-                this.Close();
-            }
-
             InitializeComponent();
-
             SetUpGrid(arrivalTimes);
         }
         
         private void SetUpGrid(IEnumerable<ArrivalTime> arrivalTimes)
         {
-            using (var service = new LunchTimeService.LunchTimeClient())
+            try
             {
-                this.Restaurants = service.GetRestaurants().Select(restaurant => restaurant.Name).ToList();
-            }
+                using (var service = new LunchTimeService.LunchTimeClient())
+                {
+                    this.Restaurants = service.GetRestaurants().Select(r => r.Name).ToList();
+                }
 
-            this.UpdateRestaurantList(arrivalTimes);
+                var cellStyle = new DataGridViewCellStyle();
+                cellStyle.Format = "MM/dd/yyyy HH:mm:ss";
+                this.colTime.DefaultCellStyle = cellStyle;
+
+                gvData.AutoGenerateColumns = false;
+
+                this.SetDataSources(arrivalTimes);
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void SetDataSources(IEnumerable<ArrivalTime> arrivalTimes)
+        {
+            var dataSource = new BindingList<ArrivalTime>();
+
+            foreach (var arrivalTime in arrivalTimes)
+            {
+                string restaurant = arrivalTime.Restaurant;
+                var matches = this.Restaurants.Where(r => r.ToLower().Contains(restaurant.ToLower()));
+
+                if (matches.Count() < 1)
+                    this.Restaurants.Add(restaurant);
+                else
+                    arrivalTime.Restaurant = matches.First();
+
+                dataSource.Add(arrivalTime);
+            }
 
             this.colRestaurant.DataSource = this.Restaurants;
-
-            var cellStyle = new DataGridViewCellStyle();
-            cellStyle.Format = "MM/dd/yyyy HH:mm:ss";
-            this.colTime.DefaultCellStyle = cellStyle;
-
-            gvData.AutoGenerateColumns = false;
-            gvData.DataSource = arrivalTimes.ToList();
-        }
-
-        private void UpdateRestaurantList(IEnumerable<ArrivalTime> arrivalTimes)
-        {
-            foreach (string restaurant in arrivalTimes.Select(time => time.Restaurant))
-            {
-                if (this.Restaurants.Where(r => r.ToLower().Contains(restaurant.ToLower())).Count() < 1)
-                    this.Restaurants.Add(restaurant);
-            }
-        }
-
-        private static LunchTimeService.ArrivalTime ConvertArrivalTimes(ArrivalTime time)
-        {
-            var result = new LunchTimeService.ArrivalTime();
-            var restaurant = new LunchTimeService.Restaurant();
-            restaurant.Name = time.Restaurant;
-            result.Restaurant = restaurant;
-            result.TimeArrived = time.Time;
-            return result;
+            this.gvData.DataSource = dataSource;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-            using (var service = new LunchTimeService.LunchTimeClient())
+            try
             {
-                var arrivalTimes = this.gvData.DataSource as List<ArrivalTime>;
+                using (var service = new LunchTimeService.LunchTimeClient())
+                {
+                    if (this.ArrivalTimes != null)
+                        service.InsertArrivalTimes(this.ArrivalTimes.Select(at => at.ConvertToDto()).ToArray());
+                }
 
-                if (arrivalTimes != null)
-                    service.InsertArrivalTimes(arrivalTimes.Select(at => ConvertArrivalTimes(at)).ToArray());
+                this.DialogResult = DialogResult.OK;
+                this.Close();
             }
-
-            this.DialogResult = DialogResult.OK;
-            this.Close();
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void btnCancel_Click(object sender, EventArgs e)
@@ -122,6 +126,23 @@ namespace LunchTime.AddIn
         private void gvData_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
             gvData.CommitEdit(DataGridViewDataErrorContexts.Commit);
+        }
+
+        private void gvData_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
+        {
+            e.Control.KeyDown += (s, e2) =>
+            {
+                if (gvData.CurrentCell.ColumnIndex == 0)
+                {
+                    if (e2.KeyCode == Keys.Delete)
+                    {
+                        foreach (DataGridViewRow row in gvData.SelectedRows)
+                        {
+                            gvData.Rows.Remove(row);
+                        }
+                    }
+                }
+            };
         }
     }
 }

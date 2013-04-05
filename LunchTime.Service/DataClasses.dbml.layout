@@ -8,16 +8,16 @@
         <elementListCompartment Id="6a7f6f6d-1723-4efa-a30f-c5ff0447449b" absoluteBounds="3.515, 1.335, 1.9700000000000002, 1.2108968098958333" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <classShape Id="5bed2121-511b-4f37-9858-654dd7465154" absoluteBounds="0.75, 1.25, 2, 1.1939925130208338">
+    <classShape Id="a6ba9e8c-69fc-4df0-b7c8-73fcd518fa5d" absoluteBounds="0.75, 0.875, 2, 1.1939925130208333">
       <DataClassMoniker Name="/DataClassesDataContext/Restaurant" />
       <nestedChildShapes>
-        <elementListCompartment Id="ef3dc5fe-c2a3-4592-b236-f84883ef2b34" absoluteBounds="0.765, 1.71, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
+        <elementListCompartment Id="3dd59305-93a9-4f33-b25a-c59763b0c37e" absoluteBounds="0.76500000000000012, 1.335, 1.9700000000000002, 0.63399251302083326" name="DataPropertiesCompartment" titleTextColor="Black" itemTextColor="Black" />
       </nestedChildShapes>
     </classShape>
-    <associationConnector edgePoints="[(2.75 : 1.84699625651042); (3.5 : 1.84699625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
+    <associationConnector edgePoints="[(2.75 : 1.47199625651042); (3.5 : 1.47199625651042)]" fixedFrom="Algorithm" fixedTo="Algorithm">
       <AssociationMoniker Name="/DataClassesDataContext/Restaurant/Restaurant_ArrivalTime" />
       <nodes>
-        <classShapeMoniker Id="5bed2121-511b-4f37-9858-654dd7465154" />
+        <classShapeMoniker Id="a6ba9e8c-69fc-4df0-b7c8-73fcd518fa5d" />
         <classShapeMoniker Id="d0feda82-aebe-4e61-8e11-b52b33d4ee28" />
       </nodes>
     </associationConnector>

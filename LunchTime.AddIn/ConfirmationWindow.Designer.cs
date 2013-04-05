@@ -69,7 +69,7 @@
             this.btnSubmit.Location = new System.Drawing.Point(216, 10);
             this.btnSubmit.Name = "btnSubmit";
             this.btnSubmit.Size = new System.Drawing.Size(75, 23);
-            this.btnSubmit.TabIndex = 1;
+            this.btnSubmit.TabIndex = 0;
             this.btnSubmit.Text = "Submit";
             this.btnSubmit.UseVisualStyleBackColor = true;
             this.btnSubmit.Click += new System.EventHandler(this.btnSubmit_Click);
@@ -82,7 +82,7 @@
             this.btnCancel.Location = new System.Drawing.Point(297, 10);
             this.btnCancel.Name = "btnCancel";
             this.btnCancel.Size = new System.Drawing.Size(75, 23);
-            this.btnCancel.TabIndex = 0;
+            this.btnCancel.TabIndex = 1;
             this.btnCancel.Text = "Cancel";
             this.btnCancel.UseVisualStyleBackColor = true;
             this.btnCancel.Click += new System.EventHandler(this.btnCancel_Click);
@@ -108,11 +108,13 @@
             this.gvData.Dock = System.Windows.Forms.DockStyle.Fill;
             this.gvData.Location = new System.Drawing.Point(0, 0);
             this.gvData.Name = "gvData";
+            this.gvData.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.FullRowSelect;
             this.gvData.Size = new System.Drawing.Size(384, 89);
             this.gvData.TabIndex = 0;
             this.gvData.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.gvData_CellClick);
             this.gvData.CurrentCellDirtyStateChanged += new System.EventHandler(this.gvData_CurrentCellDirtyStateChanged);
             this.gvData.DataError += new System.Windows.Forms.DataGridViewDataErrorEventHandler(this.gvData_DataError);
+            this.gvData.EditingControlShowing += new System.Windows.Forms.DataGridViewEditingControlShowingEventHandler(this.gvData_EditingControlShowing);
             // 
             // colRestaurant
             // 
@@ -122,7 +124,7 @@
             // 
             // colTime
             // 
-            this.colTime.DataPropertyName = "Time";
+            this.colTime.DataPropertyName = "TimeArrived";
             this.colTime.HeaderText = "Arrival Time";
             this.colTime.Name = "colTime";
             // 

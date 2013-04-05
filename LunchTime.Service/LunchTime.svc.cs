@@ -6,26 +6,53 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using LunchTime.Service.DataTransferObjects;
 
 namespace LunchTime.Service
 {
     public class LunchTime : ILunchTime
     {
-        public List<ArrivalTime> GetArrivalTimes()
+        public List<ArrivalTimeData> GetArrivalTimes()
         {
-            return (new DataClassesDataContext()).ArrivalTimes.ToList();
+            using (var database = new DataClassesDataContext())
+            {
+                return database.ArrivalTimes.Select(at => new ArrivalTimeData(at)).ToList();
+            }
         }
 
-        public List<Restaurant> GetRestaurants()
+        public List<RestaurantData> GetRestaurants()
         {
-            return (new DataClassesDataContext()).Restaurants.ToList();
+            using (var database = new DataClassesDataContext())
+            {
+                return database.Restaurants.Select(r => new RestaurantData(r)).ToList();
+            }
         }
 
-        public void InsertArrivalTimes(IEnumerable<ArrivalTime> arrivalTimes)
+        public void InsertArrivalTimes(IEnumerable<ArrivalTimeData> arrivalTimes)
         {
-            var database = new DataClassesDataContext();
-            database.ArrivalTimes.InsertAllOnSubmit(arrivalTimes);
-            database.SubmitChanges();
+            using (var database = new DataClassesDataContext())
+            {
+                foreach (var arrivalTime in arrivalTimes)
+                {
+                    var result = new ArrivalTime();
+                    database.ArrivalTimes.InsertOnSubmit(result);
+
+                    var restaurant = database.Restaurants.FirstOrDefault(r => r.Name == arrivalTime.Restaurant.Name);
+
+                    if (restaurant == default(Restaurant))
+                    {
+                        restaurant = new Restaurant();
+                        restaurant.Name = arrivalTime.Restaurant.Name;
+                        database.Restaurants.InsertOnSubmit(restaurant);
+                    }
+
+                    result.Restaurant = restaurant;
+                    result.TimeArrived = arrivalTime.TimeArrived;
+                    database.ArrivalTimes.InsertOnSubmit(result);
+                }
+
+                database.SubmitChanges();
+            }
         }
     }
 }

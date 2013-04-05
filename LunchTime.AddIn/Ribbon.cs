@@ -22,7 +22,7 @@ namespace LunchTime.AddIn
                                                       .Session
                                                       .GetDefaultFolder(OlDefaultFolders.olFolderInbox);
 
-                string pattern = "If you ordered from (.*),.*";
+                string pattern = "If you ordered from (.*).*";
 
                 var items = inbox.Items
                                  .Cast<MailItem>()
@@ -34,6 +34,12 @@ namespace LunchTime.AddIn
                                     ID = item.EntryID
                                  })
                                  .Select(item => new ArrivalTime(item.restaurant, item.arrivalTime, item.ID));
+
+                if (items.Count() < 1)
+                {
+                    MessageBox.Show("No arrival time messages found in Inbox.");
+                    return;
+                }
 
                 ConfirmationWindow window = new ConfirmationWindow(items);
                 window.ShowDialog();

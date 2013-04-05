@@ -5,6 +5,7 @@ using System.Runtime.Serialization;
 using System.ServiceModel;
 using System.ServiceModel.Web;
 using System.Text;
+using LunchTime.Service.DataTransferObjects;
 
 namespace LunchTime.Service
 {
@@ -12,12 +13,12 @@ namespace LunchTime.Service
     public interface ILunchTime
     {
         [OperationContract]
-        List<ArrivalTime> GetArrivalTimes();
+        List<ArrivalTimeData> GetArrivalTimes();
 
         [OperationContract]
-        List<Restaurant> GetRestaurants();
+        List<RestaurantData> GetRestaurants();
 
         [OperationContract]
-        void InsertArrivalTimes(IEnumerable<ArrivalTime> arrivalTimes);
+        void InsertArrivalTimes(IEnumerable<ArrivalTimeData> arrivalTimes);
     }
 }
