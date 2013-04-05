@@ -23,10 +23,10 @@ namespace LunchTime.AddIn
 
                 var items = inbox.Items
                                  .Cast<MailItem>()
-                                 .Where(item => Regex.IsMatch(item.Subject, pattern))
+                                 .Where(item => Regex.IsMatch(item.Subject, pattern, RegexOptions.IgnoreCase))
                                  .Select(item => new
                                  {
-                                    restaurant = Regex.Match(item.Subject, pattern).Groups[1].Value,
+                                    restaurant = Regex.Match(item.Subject, pattern, RegexOptions.IgnoreCase).Groups[1].Value,
                                     arrivalTime = item.SentOn,
                                     ID = item.EntryID
                                  })
