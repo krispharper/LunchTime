@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-
-namespace LunchTime.AddIn
+﻿namespace LunchTime.AddIn
 {
     public static class ConversionFunctions
     {

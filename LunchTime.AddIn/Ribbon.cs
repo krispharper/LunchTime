@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using System.Linq;
 using System.Text.RegularExpressions;
 using System.Windows.Forms;
 using Microsoft.Office.Tools.Ribbon;
@@ -22,7 +19,7 @@ namespace LunchTime.AddIn
                                                       .Session
                                                       .GetDefaultFolder(OlDefaultFolders.olFolderInbox);
 
-                string pattern = "If you ordered from (.*).*";
+                string pattern = "If you ordered from (.*),.*";
 
                 var items = inbox.Items
                                  .Cast<MailItem>()
@@ -53,7 +50,6 @@ namespace LunchTime.AddIn
                          .ToList()
                          .ForEach(item => item.Delete());
                 }
-
             }
             catch (System.Exception ex)
             {

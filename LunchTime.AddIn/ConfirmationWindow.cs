@@ -1,10 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 
 namespace LunchTime.AddIn
@@ -41,7 +38,7 @@ namespace LunchTime.AddIn
                 cellStyle.Format = "MM/dd/yyyy HH:mm:ss";
                 this.colTime.DefaultCellStyle = cellStyle;
 
-                gvData.AutoGenerateColumns = false;
+                this.gvData.AutoGenerateColumns = false;
 
                 this.SetDataSources(arrivalTimes);
             }
@@ -115,31 +112,33 @@ namespace LunchTime.AddIn
 
         private void gvData_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            var cell = gvData.CurrentCell as DataGridViewComboBoxCell;
+            var cell = this.gvData.CurrentCell as DataGridViewComboBoxCell;
 
             if (cell != null)
             {
-                gvData.BeginEdit(true);
+                this.gvData.BeginEdit(true);
             }
         }
 
         private void gvData_CurrentCellDirtyStateChanged(object sender, EventArgs e)
         {
-            gvData.CommitEdit(DataGridViewDataErrorContexts.Commit);
+            this.gvData.CommitEdit(DataGridViewDataErrorContexts.Commit);
         }
 
         private void gvData_EditingControlShowing(object sender, DataGridViewEditingControlShowingEventArgs e)
         {
             e.Control.KeyDown += (s, e2) =>
             {
-                if (gvData.CurrentCell.ColumnIndex == 0)
+                if (this.gvData.CurrentCell.ColumnIndex == 0)
                 {
                     if (e2.KeyCode == Keys.Delete)
                     {
-                        foreach (DataGridViewRow row in gvData.SelectedRows)
+                        foreach (DataGridViewRow row in this.gvData.SelectedRows)
                         {
-                            gvData.Rows.Remove(row);
+                            this.gvData.Rows.Remove(row);
                         }
+
+                        this.gvData.ClearSelection();
                     }
                 }
             };
