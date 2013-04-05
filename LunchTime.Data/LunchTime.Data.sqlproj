@@ -60,10 +60,15 @@
     <Folder Include="Schema" />
     <Folder Include="Schema\Tables" />
     <Folder Include="Publish Scripts" />
+    <Folder Include="Schema\Views" />
+    <Folder Include="Schema\Stored Procedures" />
   </ItemGroup>
   <ItemGroup>
     <Build Include="Schema\Tables\ArrivalTimes.sql" />
     <Build Include="Schema\Tables\Restaurants.sql" />
+    <Build Include="Schema\Views\MissingTimes.sql" />
+    <Build Include="Schema\Views\Statistics.sql" />
+    <Build Include="Schema\Stored Procedures\SanitizeNames.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="LunchTime.Data.refactorlog" />
