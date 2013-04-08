@@ -1,5 +1,5 @@
 ﻿CREATE VIEW
-    [dbo].[MissingTimes]
+    [dbo].[PotentialMissingTimes]
 AS
     SELECT
         at.[Date],
@@ -22,12 +22,12 @@ AS
             HAVING
                 COUNT([Date]) <> 3
         )
-        AND at.[Date] NOT IN -- Known dates with missing emails
+        AND at.[Date] NOT IN
         (
-            '2012-10-10',
-            '2012-10-25',
-            '2012-11-05',
-            '2012-12-05'
+            SELECT
+                DISTINCT([Date])
+            FROM
+                [KnownMissingTimes]
         )
     GROUP BY
         at.[Date],
