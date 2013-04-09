@@ -59,7 +59,7 @@
     <Folder Include="Properties" />
     <Folder Include="Schema" />
     <Folder Include="Schema\Tables" />
-    <Folder Include="Publish Scripts" />
+    <Folder Include="Publish Profiles" />
     <Folder Include="Schema\Views" />
     <Folder Include="Schema\Stored Procedures" />
     <Folder Include="Schema Comparisons" />
@@ -79,7 +79,7 @@
     <RefactorLog Include="LunchTime.Data.refactorlog" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Publish Scripts\nydevkhsql01.publish.xml" />
+    <None Include="Publish Profiles\nydevkhsql01.publish.xml" />
     <None Include="Schema Comparisons\nydevkhsql01.scmp" />
   </ItemGroup>
 </Project>
