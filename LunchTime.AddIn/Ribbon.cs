@@ -14,24 +14,26 @@ namespace LunchTime.AddIn
 
             try
             {
-                MAPIFolder inbox = (MAPIFolder)Globals.ThisAddIn
-                                                      .Application
-                                                      .ActiveExplorer()
-                                                      .Session
-                                                      .GetDefaultFolder(OlDefaultFolders.olFolderInbox);
+                Selection selectedItems = Globals.ThisAddIn.Application.ActiveExplorer().Selection;
+
+                if (selectedItems.OfType<MailItem>().Count() < 1)
+                {
+                    MessageBox.Show("Please select at least one mail item to use this function.");
+                    return;
+                }
 
                 string pattern = "If you ordered from (.*),.*";
 
-                var items = inbox.Items
-                                 .Cast<MailItem>()
-                                 .Where(item => Regex.IsMatch(item.Subject, pattern, RegexOptions.IgnoreCase))
-                                 .Select(item => new
-                                 {
-                                    restaurant = Regex.Match(item.Subject, pattern, RegexOptions.IgnoreCase).Groups[1].Value,
-                                    arrivalTime = item.SentOn,
-                                    ID = item.EntryID
-                                 })
-                                 .Select(item => new ArrivalTime(item.restaurant, item.arrivalTime, item.ID));
+                var items = selectedItems
+                                .Cast<MailItem>()
+                                .Where(item => Regex.IsMatch(item.Subject, pattern, RegexOptions.IgnoreCase))
+                                .Select(item => new
+                                {
+                                   restaurant = Regex.Match(item.Subject, pattern, RegexOptions.IgnoreCase).Groups[1].Value,
+                                   arrivalTime = item.SentOn,
+                                   ID = item.EntryID
+                                })
+                                .Select(item => new ArrivalTime(item.restaurant, item.arrivalTime, item.ID));
 
                 if (items.Count() < 1)
                 {
@@ -44,12 +46,12 @@ namespace LunchTime.AddIn
 
                 if (window.DialogResult == DialogResult.OK)
                 {
-                    inbox.Items
-                         .Cast<MailItem>()
-                         .Where(item => window.ArrivalTimes.Select(at => at.ID)
-                         .Contains(item.EntryID))
-                         .ToList()
-                         .ForEach(item => item.Delete());
+                    selectedItems
+                        .Cast<MailItem>()
+                        .Where(item => window.ArrivalTimes.Select(at => at.ID)
+                        .Contains(item.EntryID))
+                        .ToList()
+                        .ForEach(item => item.Delete());
                 }
             }
             catch (System.Exception ex)
