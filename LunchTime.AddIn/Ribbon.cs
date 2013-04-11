@@ -22,22 +22,18 @@ namespace LunchTime.AddIn
                     return;
                 }
 
-                string pattern = "If you ordered from (.*),.*";
+                List<string> patterns = new List<string>()
+                {
+                    "If you ordered from (.*),.*",
+                    "If you orderd from (.*) your.*"
+                };
 
-                var items = selectedItems
-                                .Cast<MailItem>()
-                                .Where(item => Regex.IsMatch(item.Subject, pattern, RegexOptions.IgnoreCase))
-                                .Select(item => new
-                                {
-                                   restaurant = Regex.Match(item.Subject, pattern, RegexOptions.IgnoreCase).Groups[1].Value,
-                                   arrivalTime = item.SentOn,
-                                   ID = item.EntryID
-                                })
-                                .Select(item => new ArrivalTime(item.restaurant, item.arrivalTime, item.ID));
+                var items = Enumerable.Empty<ArrivalTime>();
+                patterns.ForEach(pattern => items = items.Concat(GetMatchingArrivalTimes(selectedItems, pattern, items)));
 
                 if (items.Count() < 1)
                 {
-                    MessageBox.Show("No arrival time messages found in Inbox.");
+                    MessageBox.Show("No arrival time messages found in selected items.");
                     return;
                 }
 
@@ -58,6 +54,21 @@ namespace LunchTime.AddIn
             {
                 MessageBox.Show(ex.ToString());
             }
+        }
+
+        private static IEnumerable<ArrivalTime> GetMatchingArrivalTimes(Selection selectedItems, string pattern, IEnumerable<ArrivalTime> currentItems)
+        {
+            return selectedItems
+                       .Cast<MailItem>()
+                       .Where(item => Regex.IsMatch(item.Subject, pattern, RegexOptions.IgnoreCase)
+                                      && !currentItems.Select(i => i.ID).Contains(item.EntryID))
+                       .Select(item => new
+                       {
+                          restaurant = Regex.Match(item.Subject, pattern, RegexOptions.IgnoreCase).Groups[1].Value,
+                          arrivalTime = item.SentOn,
+                          ID = item.EntryID
+                       })
+                       .Select(item => new ArrivalTime(item.restaurant, item.arrivalTime, item.ID));
         }
     }
 }
