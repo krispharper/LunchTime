@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ServiceModel;
 using LunchTime.Service.DataTransferObjects;
 
@@ -8,10 +9,13 @@ namespace LunchTime.Service
     public interface ILunchTime
     {
         [OperationContract]
-        List<ArrivalTimeData> GetArrivalTimes();
+        List<TimeSpan> GetArrivalTimes(string restaurant);
 
         [OperationContract]
         List<RestaurantData> GetRestaurants();
+
+        [OperationContract]
+        Statistic GetStatistic(string restaurant);
 
         [OperationContract]
         void InsertArrivalTimes(IEnumerable<ArrivalTimeData> arrivalTimes);

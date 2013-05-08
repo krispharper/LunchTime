@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Linq;
 using LunchTime.Service.DataTransferObjects;
 
@@ -6,11 +8,14 @@ namespace LunchTime.Service
 {
     public class LunchTime : ILunchTime
     {
-        public List<ArrivalTimeData> GetArrivalTimes()
+        public List<TimeSpan> GetArrivalTimes(string restaurant)
         {
             using (var database = new DataClassesDataContext())
             {
-                return database.ArrivalTimes.Select(at => new ArrivalTimeData(at)).ToList();
+                return database.ArrivalTimes
+                               .Where(at => at.Restaurant.Name == restaurant)
+                               .Select(at => at.Time.Value)
+                               .ToList();
             }
         }
 
@@ -19,6 +24,14 @@ namespace LunchTime.Service
             using (var database = new DataClassesDataContext())
             {
                 return database.Restaurants.Select(r => new RestaurantData(r)).ToList();
+            }
+        }
+
+        public Statistic GetStatistic(string restaurant)
+        {
+            using (var database = new DataClassesDataContext())
+            {
+                return database.Statistics.First(s => s.Name == restaurant);
             }
         }
 

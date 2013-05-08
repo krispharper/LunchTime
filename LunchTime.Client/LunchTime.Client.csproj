@@ -7,7 +7,7 @@
     <ProjectGuid>{AF62D554-5902-4329-93C1-BB1B4A158FAD}</ProjectGuid>
     <OutputType>WinExe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>WpfApplication1</RootNamespace>
+    <RootNamespace>LunchTime.Client</RootNamespace>
     <AssemblyName>WpfApplication1</AssemblyName>
     <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
@@ -33,11 +33,16 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>clock.ico</ApplicationIcon>
+  </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
     <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.ServiceModel" />
+    <Reference Include="system.windows.controls.datavisualization.toolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
     <Reference Include="System.Xml" />
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Core" />
@@ -49,17 +54,20 @@
     <Reference Include="WindowsBase" />
     <Reference Include="PresentationCore" />
     <Reference Include="PresentationFramework" />
+    <Reference Include="WPFToolkit, Version=3.5.40128.1, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL" />
   </ItemGroup>
   <ItemGroup>
     <ApplicationDefinition Include="App.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="HistogramGenerator.cs" />
     <Compile Include="Service References\LunchTimeService\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.svcmap</DependentUpon>
     </Compile>
+    <Compile Include="Statistic.cs" />
     <Page Include="MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -96,18 +104,27 @@
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
     <AppDesigner Include="Properties\" />
-    <None Include="Service References\LunchTimeService\LunchTime.wsdl" />
+    <None Include="Service References\LunchTimeService\LunchTime.Client.LunchTimeService.RestaurantData.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
+    <None Include="Service References\LunchTimeService\LunchTime.Client.LunchTimeService.Statistic.datasource">
+      <DependentUpon>Reference.svcmap</DependentUpon>
+    </None>
     <None Include="Service References\LunchTimeService\LunchTime.xsd">
       <SubType>Designer</SubType>
     </None>
+    <None Include="Service References\LunchTimeService\LunchTime1.wsdl" />
     <None Include="Service References\LunchTimeService\LunchTime1.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LunchTimeService\LunchTime2.xsd">
+    <None Include="Service References\LunchTimeService\LunchTime3.xsd">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Service References\LunchTimeService\WpfApplication1.LunchTimeService.ArrivalTime.datasource">
-      <DependentUpon>Reference.svcmap</DependentUpon>
+    <None Include="Service References\LunchTimeService\LunchTime31.xsd">
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="Service References\LunchTimeService\LunchTime32.xsd">
+      <SubType>Designer</SubType>
     </None>
   </ItemGroup>
   <ItemGroup>
@@ -120,9 +137,6 @@
     <WCFMetadataStorage Include="Service References\LunchTimeService\" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Service References\LunchTimeService\LunchTime.disco" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="Service References\LunchTimeService\configuration91.svcinfo" />
   </ItemGroup>
   <ItemGroup>
@@ -133,6 +147,15 @@
       <Generator>WCF Proxy Generator</Generator>
       <LastGenOutput>Reference.cs</LastGenOutput>
     </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Service References\LunchTimeService\LunchTime1.disco" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\clock.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="clock.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

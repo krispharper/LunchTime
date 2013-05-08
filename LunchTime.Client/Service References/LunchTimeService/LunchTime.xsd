@@ -1,29 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
-<xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
-  <xs:import schemaLocation="http://nydevkhsql01/LunchTime/LunchTime.svc?xsd=xsd2" namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service" />
-  <xs:element name="GetArrivalTimes">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="GetArrivalTimesResponse">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element xmlns:q1="http://schemas.datacontract.org/2004/07/LunchTime.Service" minOccurs="0" name="GetArrivalTimesResult" nillable="true" type="q1:ArrayOfArrivalTime" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertArrivalTime">
-    <xs:complexType>
-      <xs:sequence>
-        <xs:element minOccurs="0" name="name" nillable="true" type="xs:string" />
-        <xs:element minOccurs="0" name="time" type="xs:dateTime" />
-      </xs:sequence>
-    </xs:complexType>
-  </xs:element>
-  <xs:element name="InsertArrivalTimeResponse">
-    <xs:complexType>
-      <xs:sequence />
-    </xs:complexType>
-  </xs:element>
+<xs:schema xmlns:tns="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" elementFormDefault="qualified" targetNamespace="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" xmlns:xs="http://www.w3.org/2001/XMLSchema">
+  <xs:complexType name="ArrayOfRestaurantData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="RestaurantData" nillable="true" type="tns:RestaurantData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfRestaurantData" nillable="true" type="tns:ArrayOfRestaurantData" />
+  <xs:complexType name="RestaurantData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="RestaurantData" nillable="true" type="tns:RestaurantData" />
+  <xs:complexType name="ArrayOfArrivalTimeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" maxOccurs="unbounded" name="ArrivalTimeData" nillable="true" type="tns:ArrivalTimeData" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrayOfArrivalTimeData" nillable="true" type="tns:ArrayOfArrivalTimeData" />
+  <xs:complexType name="ArrivalTimeData">
+    <xs:sequence>
+      <xs:element minOccurs="0" name="Restaurant" nillable="true" type="tns:RestaurantData" />
+      <xs:element minOccurs="0" name="TimeArrived" type="xs:dateTime" />
+    </xs:sequence>
+  </xs:complexType>
+  <xs:element name="ArrivalTimeData" nillable="true" type="tns:ArrivalTimeData" />
 </xs:schema>

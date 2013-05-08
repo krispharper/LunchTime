@@ -8,37 +8,22 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace WpfApplication1.LunchTimeService {
+namespace LunchTime.Client.LunchTimeService {
     using System.Runtime.Serialization;
     using System;
     
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="ArrivalTime", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="RestaurantData", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects")]
     [System.SerializableAttribute()]
-    public partial class ArrivalTime : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class RestaurantData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int ArrivalTimesIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.DateTime> DateField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfApplication1.LunchTimeService.Restaurant RestaurantField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RestaurantIdField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.TimeSpan> TimeField;
-        
-        [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.DateTime TimeArriedField;
+        private string NameField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -51,79 +36,14 @@ namespace WpfApplication1.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int ArrivalTimesId {
+        public string Name {
             get {
-                return this.ArrivalTimesIdField;
+                return this.NameField;
             }
             set {
-                if ((this.ArrivalTimesIdField.Equals(value) != true)) {
-                    this.ArrivalTimesIdField = value;
-                    this.RaisePropertyChanged("ArrivalTimesId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.DateTime> Date {
-            get {
-                return this.DateField;
-            }
-            set {
-                if ((this.DateField.Equals(value) != true)) {
-                    this.DateField = value;
-                    this.RaisePropertyChanged("Date");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfApplication1.LunchTimeService.Restaurant Restaurant {
-            get {
-                return this.RestaurantField;
-            }
-            set {
-                if ((object.ReferenceEquals(this.RestaurantField, value) != true)) {
-                    this.RestaurantField = value;
-                    this.RaisePropertyChanged("Restaurant");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RestaurantId {
-            get {
-                return this.RestaurantIdField;
-            }
-            set {
-                if ((this.RestaurantIdField.Equals(value) != true)) {
-                    this.RestaurantIdField = value;
-                    this.RaisePropertyChanged("RestaurantId");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.TimeSpan> Time {
-            get {
-                return this.TimeField;
-            }
-            set {
-                if ((this.TimeField.Equals(value) != true)) {
-                    this.TimeField = value;
-                    this.RaisePropertyChanged("Time");
-                }
-            }
-        }
-        
-        [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.DateTime TimeArried {
-            get {
-                return this.TimeArriedField;
-            }
-            set {
-                if ((this.TimeArriedField.Equals(value) != true)) {
-                    this.TimeArriedField = value;
-                    this.RaisePropertyChanged("TimeArried");
+                if ((object.ReferenceEquals(this.NameField, value) != true)) {
+                    this.NameField = value;
+                    this.RaisePropertyChanged("Name");
                 }
             }
         }
@@ -140,21 +60,36 @@ namespace WpfApplication1.LunchTimeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Restaurant", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="Statistic", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service")]
     [System.SerializableAttribute()]
-    public partial class Restaurant : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class Statistic : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private WpfApplication1.LunchTimeService.ArrivalTime[] ArrivalTimesField;
+        private string ConfidenceIntervalField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<int> CountField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.TimeSpan> MaxField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.TimeSpan> MeanField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.TimeSpan> MinField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private int RestaurantIdField;
+        private System.Nullable<int> RangeField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.Nullable<System.TimeSpan> StandardDeviationField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -167,14 +102,66 @@ namespace WpfApplication1.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public WpfApplication1.LunchTimeService.ArrivalTime[] ArrivalTimes {
+        public string ConfidenceInterval {
             get {
-                return this.ArrivalTimesField;
+                return this.ConfidenceIntervalField;
             }
             set {
-                if ((object.ReferenceEquals(this.ArrivalTimesField, value) != true)) {
-                    this.ArrivalTimesField = value;
-                    this.RaisePropertyChanged("ArrivalTimes");
+                if ((object.ReferenceEquals(this.ConfidenceIntervalField, value) != true)) {
+                    this.ConfidenceIntervalField = value;
+                    this.RaisePropertyChanged("ConfidenceInterval");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<int> Count {
+            get {
+                return this.CountField;
+            }
+            set {
+                if ((this.CountField.Equals(value) != true)) {
+                    this.CountField = value;
+                    this.RaisePropertyChanged("Count");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.TimeSpan> Max {
+            get {
+                return this.MaxField;
+            }
+            set {
+                if ((this.MaxField.Equals(value) != true)) {
+                    this.MaxField = value;
+                    this.RaisePropertyChanged("Max");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.TimeSpan> Mean {
+            get {
+                return this.MeanField;
+            }
+            set {
+                if ((this.MeanField.Equals(value) != true)) {
+                    this.MeanField = value;
+                    this.RaisePropertyChanged("Mean");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.TimeSpan> Min {
+            get {
+                return this.MinField;
+            }
+            set {
+                if ((this.MinField.Equals(value) != true)) {
+                    this.MinField = value;
+                    this.RaisePropertyChanged("Min");
                 }
             }
         }
@@ -193,14 +180,88 @@ namespace WpfApplication1.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public int RestaurantId {
+        public System.Nullable<int> Range {
             get {
-                return this.RestaurantIdField;
+                return this.RangeField;
             }
             set {
-                if ((this.RestaurantIdField.Equals(value) != true)) {
-                    this.RestaurantIdField = value;
-                    this.RaisePropertyChanged("RestaurantId");
+                if ((this.RangeField.Equals(value) != true)) {
+                    this.RangeField = value;
+                    this.RaisePropertyChanged("Range");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.Nullable<System.TimeSpan> StandardDeviation {
+            get {
+                return this.StandardDeviationField;
+            }
+            set {
+                if ((this.StandardDeviationField.Equals(value) != true)) {
+                    this.StandardDeviationField = value;
+                    this.RaisePropertyChanged("StandardDeviation");
+                }
+            }
+        }
+        
+        public event System.ComponentModel.PropertyChangedEventHandler PropertyChanged;
+        
+        protected void RaisePropertyChanged(string propertyName) {
+            System.ComponentModel.PropertyChangedEventHandler propertyChanged = this.PropertyChanged;
+            if ((propertyChanged != null)) {
+                propertyChanged(this, new System.ComponentModel.PropertyChangedEventArgs(propertyName));
+            }
+        }
+    }
+    
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="ArrivalTimeData", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects")]
+    [System.SerializableAttribute()]
+    public partial class ArrivalTimeData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+        
+        [System.NonSerializedAttribute()]
+        private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private LunchTime.Client.LunchTimeService.RestaurantData RestaurantField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.DateTime TimeArrivedField;
+        
+        [global::System.ComponentModel.BrowsableAttribute(false)]
+        public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
+            get {
+                return this.extensionDataField;
+            }
+            set {
+                this.extensionDataField = value;
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public LunchTime.Client.LunchTimeService.RestaurantData Restaurant {
+            get {
+                return this.RestaurantField;
+            }
+            set {
+                if ((object.ReferenceEquals(this.RestaurantField, value) != true)) {
+                    this.RestaurantField = value;
+                    this.RaisePropertyChanged("Restaurant");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.DateTime TimeArrived {
+            get {
+                return this.TimeArrivedField;
+            }
+            set {
+                if ((this.TimeArrivedField.Equals(value) != true)) {
+                    this.TimeArrivedField = value;
+                    this.RaisePropertyChanged("TimeArrived");
                 }
             }
         }
@@ -220,25 +281,37 @@ namespace WpfApplication1.LunchTimeService {
     public interface ILunchTime {
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/GetArrivalTimesResponse")]
-        WpfApplication1.LunchTimeService.ArrivalTime[] GetArrivalTimes();
+        System.TimeSpan[] GetArrivalTimes(string restaurant);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/GetArrivalTimesResponse")]
-        System.Threading.Tasks.Task<WpfApplication1.LunchTimeService.ArrivalTime[]> GetArrivalTimesAsync();
+        System.Threading.Tasks.Task<System.TimeSpan[]> GetArrivalTimesAsync(string restaurant);
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTime", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimeResponse")]
-        void InsertArrivalTime(string name, System.DateTime time);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetRestaurants", ReplyAction="http://tempuri.org/ILunchTime/GetRestaurantsResponse")]
+        LunchTime.Client.LunchTimeService.RestaurantData[] GetRestaurants();
         
-        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTime", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimeResponse")]
-        System.Threading.Tasks.Task InsertArrivalTimeAsync(string name, System.DateTime time);
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetRestaurants", ReplyAction="http://tempuri.org/ILunchTime/GetRestaurantsResponse")]
+        System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.RestaurantData[]> GetRestaurantsAsync();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistic", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticResponse")]
+        LunchTime.Client.LunchTimeService.Statistic GetStatistic(string restaurant);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistic", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticResponse")]
+        System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.Statistic> GetStatisticAsync(string restaurant);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimesResponse")]
+        void InsertArrivalTimes(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimesResponse")]
+        System.Threading.Tasks.Task InsertArrivalTimesAsync(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes);
     }
     
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public interface ILunchTimeChannel : WpfApplication1.LunchTimeService.ILunchTime, System.ServiceModel.IClientChannel {
+    public interface ILunchTimeChannel : LunchTime.Client.LunchTimeService.ILunchTime, System.ServiceModel.IClientChannel {
     }
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.ServiceModel", "4.0.0.0")]
-    public partial class LunchTimeClient : System.ServiceModel.ClientBase<WpfApplication1.LunchTimeService.ILunchTime>, WpfApplication1.LunchTimeService.ILunchTime {
+    public partial class LunchTimeClient : System.ServiceModel.ClientBase<LunchTime.Client.LunchTimeService.ILunchTime>, LunchTime.Client.LunchTimeService.ILunchTime {
         
         public LunchTimeClient() {
         }
@@ -259,20 +332,36 @@ namespace WpfApplication1.LunchTimeService {
                 base(binding, remoteAddress) {
         }
         
-        public WpfApplication1.LunchTimeService.ArrivalTime[] GetArrivalTimes() {
-            return base.Channel.GetArrivalTimes();
+        public System.TimeSpan[] GetArrivalTimes(string restaurant) {
+            return base.Channel.GetArrivalTimes(restaurant);
         }
         
-        public System.Threading.Tasks.Task<WpfApplication1.LunchTimeService.ArrivalTime[]> GetArrivalTimesAsync() {
-            return base.Channel.GetArrivalTimesAsync();
+        public System.Threading.Tasks.Task<System.TimeSpan[]> GetArrivalTimesAsync(string restaurant) {
+            return base.Channel.GetArrivalTimesAsync(restaurant);
         }
         
-        public void InsertArrivalTime(string name, System.DateTime time) {
-            base.Channel.InsertArrivalTime(name, time);
+        public LunchTime.Client.LunchTimeService.RestaurantData[] GetRestaurants() {
+            return base.Channel.GetRestaurants();
         }
         
-        public System.Threading.Tasks.Task InsertArrivalTimeAsync(string name, System.DateTime time) {
-            return base.Channel.InsertArrivalTimeAsync(name, time);
+        public System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.RestaurantData[]> GetRestaurantsAsync() {
+            return base.Channel.GetRestaurantsAsync();
+        }
+        
+        public LunchTime.Client.LunchTimeService.Statistic GetStatistic(string restaurant) {
+            return base.Channel.GetStatistic(restaurant);
+        }
+        
+        public System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.Statistic> GetStatisticAsync(string restaurant) {
+            return base.Channel.GetStatisticAsync(restaurant);
+        }
+        
+        public void InsertArrivalTimes(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes) {
+            base.Channel.InsertArrivalTimes(arrivalTimes);
+        }
+        
+        public System.Threading.Tasks.Task InsertArrivalTimesAsync(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes) {
+            return base.Channel.InsertArrivalTimesAsync(arrivalTimes);
         }
     }
 }

@@ -17,4 +17,16 @@
       <Association Name="Restaurant_ArrivalTime" Member="ArrivalTimes" ThisKey="RestaurantId" OtherKey="RestaurantId" Type="ArrivalTime" />
     </Type>
   </Table>
+  <Table Name="dbo.[Statistics]" Member="Statistics">
+    <Type Name="Statistic">
+      <Column Name="Name" Type="System.String" DbType="NVarChar(50) NOT NULL" CanBeNull="false" />
+      <Column Name="Count" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Min" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Max" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="Range" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="Mean" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="[Standard Deviation]" Member="StandardDeviation" Type="System.TimeSpan" DbType="Time" CanBeNull="true" />
+      <Column Name="[95% Confidence Interval]" Member="ConfidenceInterval" Type="System.String" DbType="VarChar(27)" CanBeNull="true" />
+    </Type>
+  </Table>
 </Database>

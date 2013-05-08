@@ -83,6 +83,14 @@ namespace LunchTime.Service
 				return this.GetTable<Restaurant>();
 			}
 		}
+		
+		public System.Data.Linq.Table<Statistic> Statistics
+		{
+			get
+			{
+				return this.GetTable<Statistic>();
+			}
+		}
 	}
 	
 	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.ArrivalTimes")]
@@ -395,6 +403,159 @@ namespace LunchTime.Service
 		{
 			this.SendPropertyChanging();
 			entity.Restaurant = null;
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.[Statistics]")]
+	public partial class Statistic
+	{
+		
+		private string _Name;
+		
+		private System.Nullable<int> _Count;
+		
+		private System.Nullable<System.TimeSpan> _Min;
+		
+		private System.Nullable<System.TimeSpan> _Max;
+		
+		private System.Nullable<int> _Range;
+		
+		private System.Nullable<System.TimeSpan> _Mean;
+		
+		private System.Nullable<System.TimeSpan> _StandardDeviation;
+		
+		private string _ConfidenceInterval;
+		
+		public Statistic()
+		{
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Name", DbType="NVarChar(50) NOT NULL", CanBeNull=false)]
+		public string Name
+		{
+			get
+			{
+				return this._Name;
+			}
+			set
+			{
+				if ((this._Name != value))
+				{
+					this._Name = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Count", DbType="Int")]
+		public System.Nullable<int> Count
+		{
+			get
+			{
+				return this._Count;
+			}
+			set
+			{
+				if ((this._Count != value))
+				{
+					this._Count = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Min", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Min
+		{
+			get
+			{
+				return this._Min;
+			}
+			set
+			{
+				if ((this._Min != value))
+				{
+					this._Min = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Max", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Max
+		{
+			get
+			{
+				return this._Max;
+			}
+			set
+			{
+				if ((this._Max != value))
+				{
+					this._Max = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Range", DbType="Int")]
+		public System.Nullable<int> Range
+		{
+			get
+			{
+				return this._Range;
+			}
+			set
+			{
+				if ((this._Range != value))
+				{
+					this._Range = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Mean", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Mean
+		{
+			get
+			{
+				return this._Mean;
+			}
+			set
+			{
+				if ((this._Mean != value))
+				{
+					this._Mean = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[Standard Deviation]", Storage="_StandardDeviation", DbType="Time")]
+		public System.Nullable<System.TimeSpan> StandardDeviation
+		{
+			get
+			{
+				return this._StandardDeviation;
+			}
+			set
+			{
+				if ((this._StandardDeviation != value))
+				{
+					this._StandardDeviation = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Name="[95% Confidence Interval]", Storage="_ConfidenceInterval", DbType="VarChar(27)")]
+		public string ConfidenceInterval
+		{
+			get
+			{
+				return this._ConfidenceInterval;
+			}
+			set
+			{
+				if ((this._ConfidenceInterval != value))
+				{
+					this._ConfidenceInterval = value;
+				}
+			}
 		}
 	}
 }
