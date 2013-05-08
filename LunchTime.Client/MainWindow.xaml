@@ -5,7 +5,7 @@
         Title="Lunch Time" Height="350" Width="650" Loaded="mainWindow_Loaded" MinWidth="650" MinHeight="350" Closing="mainWindow_Closing">
     <DockPanel HorizontalAlignment="Left">
         <ComboBox x:Name="restaurantsComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="restaurantsComboBox_SelectionChanged"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" Height="44" DockPanel.Dock="Top">
+        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" Height="44" DockPanel.Dock="Top" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
             <DataGrid.Columns>
                 <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
                 <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>

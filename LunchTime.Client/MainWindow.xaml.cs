@@ -25,7 +25,7 @@ namespace LunchTime.Client
                 this.restaurantsComboBox.ItemsSource = restaurants;
             }
 
-            this.restaurantsComboBox.SelectedIndex = 0;
+            this.restaurantsComboBox.SelectedIndex = Properties.Settings.Default.SelectedIndex;
         }
 
         private void restaurantsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -41,10 +41,10 @@ namespace LunchTime.Client
                 this.DataGrid.ItemsSource = (new List<Statistic> { statistic });
 
                 var arrivalTimes = client.GetArrivalTimes(restaurant);
-                var histogram = new HistogramGenerator(arrivalTimes);
 
                 if (arrivalTimes.Count() > 4)
                 {
+                    var histogram = new HistogramGenerator(arrivalTimes);
                     this.dataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
                                                               .OrderBy(group => group.Key)
                                                               .Select(group => new
@@ -66,6 +66,7 @@ namespace LunchTime.Client
             Properties.Settings.Default.LocationY = this.Top;
             Properties.Settings.Default.Width = this.Width;
             Properties.Settings.Default.Height = this.Height;
+            Properties.Settings.Default.SelectedIndex = this.restaurantsComboBox.SelectedIndex;
             Properties.Settings.Default.Save();
         }
     }
