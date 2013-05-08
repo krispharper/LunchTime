@@ -43,7 +43,7 @@ namespace LunchTime.Client
                 var arrivalTimes = client.GetArrivalTimes(restaurant);
                 var histogram = new HistogramGenerator(arrivalTimes);
 
-                if (arrivalTimes.Count() > 1)
+                if (arrivalTimes.Count() > 4)
                 {
                     this.dataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
                                                               .OrderBy(group => group.Key)
