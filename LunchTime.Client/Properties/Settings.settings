@@ -12,7 +12,7 @@
       <Value Profile="(Default)">650</Value>
     </Setting>
     <Setting Name="Height" Type="System.Double" Scope="User">
-      <Value Profile="(Default)">350</Value>
+      <Value Profile="(Default)">450</Value>
     </Setting>
     <Setting Name="SelectedIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>

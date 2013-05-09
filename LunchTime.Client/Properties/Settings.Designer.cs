@@ -61,7 +61,7 @@ namespace LunchTime.Client.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("350")]
+        [global::System.Configuration.DefaultSettingValueAttribute("450")]
         public double Height {
             get {
                 return ((double)(this["Height"]));
