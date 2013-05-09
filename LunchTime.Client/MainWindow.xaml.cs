@@ -23,6 +23,9 @@ namespace LunchTime.Client
             {
                 var restaurants = client.GetRestaurants().Select(r => r.Name);
                 this.restaurantsComboBox.ItemsSource = restaurants;
+
+                var statistics = client.GetStatistics();
+                this.detailsGrid.ItemsSource = statistics.Select(s => new Statistic(s));
             }
 
             this.restaurantsComboBox.SelectedIndex = Properties.Settings.Default.SelectedIndex;
@@ -38,7 +41,7 @@ namespace LunchTime.Client
                 if (statistic == null)
                     return;
                 
-                this.DataGrid.ItemsSource = (new List<Statistic> { statistic });
+                this.summaryGrid.ItemsSource = (new List<Statistic> { statistic });
 
                 var arrivalTimes = client.GetArrivalTimes(restaurant);
 

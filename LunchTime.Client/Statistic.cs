@@ -76,15 +76,15 @@ namespace LunchTime.Client
             set;
         }
 
-        public Statistic(LunchTimeService.Statistic statistic)
+        public Statistic(LunchTimeService.StatisticData statistic)
         {
             this.Name = statistic.Name;
-            this.Count = statistic.Count.GetValueOrDefault();
-            this.Min = statistic.Min.GetValueOrDefault();
-            this.Max = statistic.Max.GetValueOrDefault();
-            this.Range = statistic.Range.GetValueOrDefault();
-            this.Mean = statistic.Mean.GetValueOrDefault();
-            this.StandardDeviation = statistic.StandardDeviation.GetValueOrDefault();
+            this.Count = statistic.Count;
+            this.Min = statistic.Min;
+            this.Max = statistic.Max;
+            this.Range = statistic.Range;
+            this.Mean = statistic.Mean;
+            this.StandardDeviation = statistic.StandardDeviation;
             this.ConfidenceInterval = statistic.ConfidenceInterval;
         }
 

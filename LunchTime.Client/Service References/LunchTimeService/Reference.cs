@@ -60,9 +60,9 @@ namespace LunchTime.Client.LunchTimeService {
     
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Runtime.Serialization", "4.0.0.0")]
-    [System.Runtime.Serialization.DataContractAttribute(Name="Statistic", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service")]
+    [System.Runtime.Serialization.DataContractAttribute(Name="StatisticData", Namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects")]
     [System.SerializableAttribute()]
-    public partial class Statistic : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
+    public partial class StatisticData : object, System.Runtime.Serialization.IExtensibleDataObject, System.ComponentModel.INotifyPropertyChanged {
         
         [System.NonSerializedAttribute()]
         private System.Runtime.Serialization.ExtensionDataObject extensionDataField;
@@ -71,25 +71,25 @@ namespace LunchTime.Client.LunchTimeService {
         private string ConfidenceIntervalField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> CountField;
+        private int CountField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.TimeSpan> MaxField;
+        private System.TimeSpan MaxField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.TimeSpan> MeanField;
+        private System.TimeSpan MeanField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.TimeSpan> MinField;
+        private System.TimeSpan MinField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
         private string NameField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<int> RangeField;
+        private int RangeField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
-        private System.Nullable<System.TimeSpan> StandardDeviationField;
+        private System.TimeSpan StandardDeviationField;
         
         [global::System.ComponentModel.BrowsableAttribute(false)]
         public System.Runtime.Serialization.ExtensionDataObject ExtensionData {
@@ -115,7 +115,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Count {
+        public int Count {
             get {
                 return this.CountField;
             }
@@ -128,7 +128,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.TimeSpan> Max {
+        public System.TimeSpan Max {
             get {
                 return this.MaxField;
             }
@@ -141,7 +141,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.TimeSpan> Mean {
+        public System.TimeSpan Mean {
             get {
                 return this.MeanField;
             }
@@ -154,7 +154,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.TimeSpan> Min {
+        public System.TimeSpan Min {
             get {
                 return this.MinField;
             }
@@ -180,7 +180,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<int> Range {
+        public int Range {
             get {
                 return this.RangeField;
             }
@@ -193,7 +193,7 @@ namespace LunchTime.Client.LunchTimeService {
         }
         
         [System.Runtime.Serialization.DataMemberAttribute()]
-        public System.Nullable<System.TimeSpan> StandardDeviation {
+        public System.TimeSpan StandardDeviation {
             get {
                 return this.StandardDeviationField;
             }
@@ -293,10 +293,16 @@ namespace LunchTime.Client.LunchTimeService {
         System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.RestaurantData[]> GetRestaurantsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistic", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticResponse")]
-        LunchTime.Client.LunchTimeService.Statistic GetStatistic(string restaurant);
+        LunchTime.Client.LunchTimeService.StatisticData GetStatistic(string restaurant);
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistic", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticResponse")]
-        System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.Statistic> GetStatisticAsync(string restaurant);
+        System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.StatisticData> GetStatisticAsync(string restaurant);
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistics", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticsResponse")]
+        LunchTime.Client.LunchTimeService.StatisticData[] GetStatistics();
+        
+        [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/GetStatistics", ReplyAction="http://tempuri.org/ILunchTime/GetStatisticsResponse")]
+        System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.StatisticData[]> GetStatisticsAsync();
         
         [System.ServiceModel.OperationContractAttribute(Action="http://tempuri.org/ILunchTime/InsertArrivalTimes", ReplyAction="http://tempuri.org/ILunchTime/InsertArrivalTimesResponse")]
         void InsertArrivalTimes(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes);
@@ -348,12 +354,20 @@ namespace LunchTime.Client.LunchTimeService {
             return base.Channel.GetRestaurantsAsync();
         }
         
-        public LunchTime.Client.LunchTimeService.Statistic GetStatistic(string restaurant) {
+        public LunchTime.Client.LunchTimeService.StatisticData GetStatistic(string restaurant) {
             return base.Channel.GetStatistic(restaurant);
         }
         
-        public System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.Statistic> GetStatisticAsync(string restaurant) {
+        public System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.StatisticData> GetStatisticAsync(string restaurant) {
             return base.Channel.GetStatisticAsync(restaurant);
+        }
+        
+        public LunchTime.Client.LunchTimeService.StatisticData[] GetStatistics() {
+            return base.Channel.GetStatistics();
+        }
+        
+        public System.Threading.Tasks.Task<LunchTime.Client.LunchTimeService.StatisticData[]> GetStatisticsAsync() {
+            return base.Channel.GetStatisticsAsync();
         }
         
         public void InsertArrivalTimes(LunchTime.Client.LunchTimeService.ArrivalTimeData[] arrivalTimes) {

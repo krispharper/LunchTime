@@ -3,30 +3,48 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:chartingToolkit="clr-namespace:System.Windows.Controls.DataVisualization.Charting;assembly=System.Windows.Controls.DataVisualization.Toolkit" x:Name="mainWindow" x:Class="LunchTime.Client.MainWindow"
         Title="Lunch Time" Height="350" Width="650" Loaded="mainWindow_Loaded" MinWidth="650" MinHeight="350" Closing="mainWindow_Closing">
-    <DockPanel HorizontalAlignment="Left">
-        <ComboBox x:Name="restaurantsComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="restaurantsComboBox_SelectionChanged"/>
-        <DataGrid x:Name="DataGrid" AutoGenerateColumns="False" Height="44" DockPanel.Dock="Top" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
-            <DataGrid.Columns>
-                <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
-                <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>
-                <DataGridTextColumn Binding="{Binding MinFormatted}" Header="Min"/>
-                <DataGridTextColumn Binding="{Binding MaxFormatted}" Header="Max"/>
-                <DataGridTextColumn Binding="{Binding Range}" Header="Range"/>
-                <DataGridTextColumn Binding="{Binding StandardDeviationFormatted}" Header="Standard Deviation"/>
-                <DataGridTextColumn Binding="{Binding ConfidenceInterval}" Header="95% Confidence Interval" Width="*"/>
-            </DataGrid.Columns>
-        </DataGrid>
-        <chartingToolkit:Chart x:Name="chart">
-            <chartingToolkit:LineSeries x:Name="dataSeries" IndependentValuePath="Index" DependentValuePath="Value"/>
-            <chartingToolkit:Chart.Axes>
-                <chartingToolkit:CategoryAxis Orientation="X" Title="Arrival Time"/>
-                <chartingToolkit:LinearAxis Orientation="Y" Title="Frequency"/>
-            </chartingToolkit:Chart.Axes>
-            <chartingToolkit:Chart.LegendStyle>
-                <Style TargetType="Control">
-                    <Setter Property="Width" Value="0"/>
-                </Style>
-            </chartingToolkit:Chart.LegendStyle>
-        </chartingToolkit:Chart>
-    </DockPanel>
+    <TabControl>
+        <TabItem Header="Restaurant Summary">
+            <DockPanel HorizontalAlignment="Left">
+                <ComboBox x:Name="restaurantsComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="restaurantsComboBox_SelectionChanged"/>
+                <DataGrid x:Name="summaryGrid" AutoGenerateColumns="False" Height="44" DockPanel.Dock="Top" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
+                        <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>
+                        <DataGridTextColumn Binding="{Binding MinFormatted}" Header="Min"/>
+                        <DataGridTextColumn Binding="{Binding MaxFormatted}" Header="Max"/>
+                        <DataGridTextColumn Binding="{Binding Range}" Header="Range"/>
+                        <DataGridTextColumn Binding="{Binding StandardDeviationFormatted}" Header="Standard Deviation"/>
+                        <DataGridTextColumn Binding="{Binding ConfidenceInterval}" Header="95% Confidence Interval" Width="*"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+                <chartingToolkit:Chart x:Name="chart">
+                    <chartingToolkit:LineSeries x:Name="dataSeries" IndependentValuePath="Index" DependentValuePath="Value"/>
+                    <chartingToolkit:Chart.Axes>
+                        <chartingToolkit:CategoryAxis Orientation="X" Title="Arrival Time"/>
+                        <chartingToolkit:LinearAxis Orientation="Y" Title="Frequency"/>
+                    </chartingToolkit:Chart.Axes>
+                    <chartingToolkit:Chart.LegendStyle>
+                        <Style TargetType="Control">
+                            <Setter Property="Width" Value="0"/>
+                        </Style>
+                    </chartingToolkit:Chart.LegendStyle>
+                </chartingToolkit:Chart>
+            </DockPanel>
+        </TabItem>
+        <TabItem Header="Statistics">
+            <DataGrid x:Name="detailsGrid" AutoGenerateColumns="False" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
+                <DataGrid.Columns>
+                    <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
+                    <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
+                    <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>
+                    <DataGridTextColumn Binding="{Binding MinFormatted}" Header="Min"/>
+                    <DataGridTextColumn Binding="{Binding MaxFormatted}" Header="Max"/>
+                    <DataGridTextColumn Binding="{Binding Range}" Header="Range"/>
+                    <DataGridTextColumn Binding="{Binding StandardDeviationFormatted}" Header="Standard Deviation"/>
+                    <DataGridTextColumn Binding="{Binding ConfidenceInterval}" Header="95% Confidence Interval" Width="*"/>
+                </DataGrid.Columns>
+            </DataGrid>
+        </TabItem>
+    </TabControl>
 </Window>

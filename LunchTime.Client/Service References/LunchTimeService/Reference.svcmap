@@ -27,7 +27,6 @@
     <MetadataFile FileName="LunchTime32.xsd" MetadataType="Schema" ID="0684fc77-465d-4122-a016-221317dfed4e" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd0" />
     <MetadataFile FileName="LunchTime1.wsdl" MetadataType="Wsdl" ID="3e97c9ff-d7cd-40ca-9366-65f2753d595d" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?wsdl" />
     <MetadataFile FileName="LunchTime1.disco" MetadataType="Disco" ID="fca399af-9061-45ac-b97b-f9681129098a" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?disco" />
-    <MetadataFile FileName="LunchTime1.xsd" MetadataType="Schema" ID="8a379b70-de51-44f8-9495-55c310700936" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd4" />
     <MetadataFile FileName="LunchTime.xsd" MetadataType="Schema" ID="0444d41b-cee5-41d3-9a69-ea49f523ed04" SourceId="1" SourceUrl="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd3" />
   </Metadata>
   <Extensions>

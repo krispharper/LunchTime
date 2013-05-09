@@ -71,6 +71,7 @@
     </Compile>
     <Compile Include="DataTransferObjects\ArrivalTimeData.cs" />
     <Compile Include="DataTransferObjects\RestaurantData.cs" />
+    <Compile Include="DataTransferObjects\StatisticData.cs" />
     <Compile Include="LunchTime.svc.cs">
       <DependentUpon>LunchTime.svc</DependentUpon>
     </Compile>

@@ -15,7 +15,10 @@ namespace LunchTime.Service
         List<RestaurantData> GetRestaurants();
 
         [OperationContract]
-        Statistic GetStatistic(string restaurant);
+        StatisticData GetStatistic(string restaurant);
+
+        [OperationContract]
+        List<StatisticData> GetStatistics();
 
         [OperationContract]
         void InsertArrivalTimes(IEnumerable<ArrivalTimeData> arrivalTimes);

@@ -27,11 +27,25 @@ namespace LunchTime.Service
             }
         }
 
-        public Statistic GetStatistic(string restaurant)
+        public StatisticData GetStatistic(string restaurant)
         {
             using (var database = new DataClassesDataContext())
             {
-                return database.Statistics.First(s => s.Name == restaurant);
+                return database.Statistics
+                               .Where(s => s.Name == restaurant)
+                               .Select(s => new StatisticData(s))
+                               .First();
+            }
+        }
+
+        public List<StatisticData> GetStatistics()
+        {
+            using (var database = new DataClassesDataContext())
+            {
+                return database.Statistics
+                               .OrderBy(s => s.Name)
+                               .Select(s => new StatisticData(s))
+                               .ToList();
             }
         }
 

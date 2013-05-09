@@ -2,7 +2,6 @@
 <xs:schema xmlns:tns="http://tempuri.org/" elementFormDefault="qualified" targetNamespace="http://tempuri.org/" xmlns:xs="http://www.w3.org/2001/XMLSchema">
   <xs:import schemaLocation="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd2" namespace="http://schemas.microsoft.com/2003/10/Serialization/Arrays" />
   <xs:import schemaLocation="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd3" namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" />
-  <xs:import schemaLocation="http://nydevkhsql01.federation.local/LunchTime/LunchTime.svc?xsd=xsd4" namespace="http://schemas.datacontract.org/2004/07/LunchTime.Service" />
   <xs:element name="GetArrivalTimes">
     <xs:complexType>
       <xs:sequence>
@@ -39,14 +38,26 @@
   <xs:element name="GetStatisticResponse">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/LunchTime.Service" minOccurs="0" name="GetStatisticResult" nillable="true" type="q3:Statistic" />
+        <xs:element xmlns:q3="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" minOccurs="0" name="GetStatisticResult" nillable="true" type="q3:StatisticData" />
+      </xs:sequence>
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatistics">
+    <xs:complexType>
+      <xs:sequence />
+    </xs:complexType>
+  </xs:element>
+  <xs:element name="GetStatisticsResponse">
+    <xs:complexType>
+      <xs:sequence>
+        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" minOccurs="0" name="GetStatisticsResult" nillable="true" type="q4:ArrayOfStatisticData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
   <xs:element name="InsertArrivalTimes">
     <xs:complexType>
       <xs:sequence>
-        <xs:element xmlns:q4="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" minOccurs="0" name="arrivalTimes" nillable="true" type="q4:ArrayOfArrivalTimeData" />
+        <xs:element xmlns:q5="http://schemas.datacontract.org/2004/07/LunchTime.Service.DataTransferObjects" minOccurs="0" name="arrivalTimes" nillable="true" type="q5:ArrayOfArrivalTimeData" />
       </xs:sequence>
     </xs:complexType>
   </xs:element>
