@@ -49,6 +49,13 @@ namespace LunchTime.Service.DataTransferObjects
         }
 
         [DataMember]
+        public TimeSpan Median
+        {
+            get;
+            set;
+        }
+
+        [DataMember]
         public TimeSpan StandardDeviation
         {
             get;
@@ -70,6 +77,7 @@ namespace LunchTime.Service.DataTransferObjects
             this.Max = statistic.Max.GetValueOrDefault();
             this.Range = statistic.Range.GetValueOrDefault();
             this.Mean = statistic.Mean.GetValueOrDefault();
+            this.Median = statistic.Median.GetValueOrDefault();
             this.StandardDeviation = statistic.StandardDeviation.GetValueOrDefault();
             this.ConfidenceInterval = statistic.ConfidenceInterval;
         }

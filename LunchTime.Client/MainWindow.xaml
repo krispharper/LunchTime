@@ -11,6 +11,7 @@
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
                         <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>
+                        <DataGridTextColumn Binding="{Binding MedianFormatted}" Header="Median"/>
                         <DataGridTextColumn Binding="{Binding MinFormatted}" Header="Min"/>
                         <DataGridTextColumn Binding="{Binding MaxFormatted}" Header="Max"/>
                         <DataGridTextColumn Binding="{Binding Range}" Header="Range"/>
@@ -38,6 +39,7 @@
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                     <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
                     <DataGridTextColumn Binding="{Binding MeanFormatted}" Header="Mean"/>
+                    <DataGridTextColumn Binding="{Binding MedianFormatted}" Header="Median"/>
                     <DataGridTextColumn Binding="{Binding MinFormatted}" Header="Min"/>
                     <DataGridTextColumn Binding="{Binding MaxFormatted}" Header="Max"/>
                     <DataGridTextColumn Binding="{Binding Range}" Header="Range"/>

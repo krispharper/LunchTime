@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
@@ -14,52 +15,66 @@ namespace LunchTime.Client
 
         private void mainWindow_Loaded(object sender, RoutedEventArgs e)
         {
-            this.Left = Properties.Settings.Default.LocationX;
-            this.Top = Properties.Settings.Default.LocationY;
-            this.Width = Properties.Settings.Default.Width;
-            this.Height = Properties.Settings.Default.Height;
-
-            using (var client = new LunchTimeService.LunchTimeClient())
+            try
             {
-                var restaurants = client.GetRestaurants().Select(r => r.Name);
-                this.restaurantsComboBox.ItemsSource = restaurants;
+                this.Left = Properties.Settings.Default.LocationX;
+                this.Top = Properties.Settings.Default.LocationY;
+                this.Width = Properties.Settings.Default.Width;
+                this.Height = Properties.Settings.Default.Height;
 
-                var statistics = client.GetStatistics();
-                this.detailsGrid.ItemsSource = statistics.Select(s => new Statistic(s));
+                using (var client = new LunchTimeService.LunchTimeClient())
+                {
+                    var restaurants = client.GetRestaurants().Select(r => r.Name);
+                    this.restaurantsComboBox.ItemsSource = restaurants;
+
+                    var statistics = client.GetStatistics();
+                    this.detailsGrid.ItemsSource = statistics.Select(s => new Statistic(s));
+                }
+
+                this.restaurantsComboBox.SelectedIndex = Properties.Settings.Default.SelectedIndex;
             }
-
-            this.restaurantsComboBox.SelectedIndex = Properties.Settings.Default.SelectedIndex;
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
         }
 
         private void restaurantsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            using (var client = new LunchTimeService.LunchTimeClient())
+            try
             {
-                string restaurant = this.restaurantsComboBox.SelectedValue as string;
-                Statistic statistic = new Statistic(client.GetStatistic(restaurant));
-
-                if (statistic == null)
-                    return;
-                
-                this.summaryGrid.ItemsSource = (new List<Statistic> { statistic });
-
-                var arrivalTimes = client.GetArrivalTimes(restaurant);
-
-                if (arrivalTimes.Count() > 4)
+                using (var client = new LunchTimeService.LunchTimeClient())
                 {
-                    var histogram = new HistogramGenerator(arrivalTimes);
-                    this.dataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
-                                                              .OrderBy(group => group.Key)
-                                                              .Select(group => new
-                                                              {
-                                                                  Index = Statistic.FormatTimeSpan(group.Key, false),
-                                                                  Value = group.Count()
-                                                              });
+                    string restaurant = this.restaurantsComboBox.SelectedValue as string;
+                    Statistic statistic = new Statistic(client.GetStatistic(restaurant));
+
+                    if (statistic == null)
+                        return;
+
+                    this.summaryGrid.ItemsSource = (new List<Statistic> { statistic });
+
+                    var arrivalTimes = client.GetArrivalTimes(restaurant);
+
+                    if (arrivalTimes.Count() > 4)
+                    {
+                        var histogram = new HistogramGenerator(arrivalTimes);
+                        this.dataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
+                                                                  .OrderBy(group => group.Key)
+                                                                  .Select(group => new
+                                                                  {
+                                                                      Index = Statistic.FormatTimeSpan(group.Key, false),
+                                                                      Value = group.Count()
+                                                                  });
+                    }
+                    else
+                    {
+                        this.dataSeries.ItemsSource = null;
+                    }
                 }
-                else
-                {
-                    this.dataSeries.ItemsSource = null;
-                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
             }
         }
 

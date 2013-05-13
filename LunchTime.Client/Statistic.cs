@@ -59,6 +59,17 @@ namespace LunchTime.Client
             get { return FormatTimeSpan(this.Mean); }
         }
 
+        public TimeSpan Median
+        {
+            get;
+            set;
+        }
+
+        public String MedianFormatted
+        {
+            get { return FormatTimeSpan(this.Median); }
+        }
+
         public TimeSpan StandardDeviation
         {
             get;
@@ -84,6 +95,7 @@ namespace LunchTime.Client
             this.Max = statistic.Max;
             this.Range = statistic.Range;
             this.Mean = statistic.Mean;
+            this.Median = statistic.Median;
             this.StandardDeviation = statistic.StandardDeviation;
             this.ConfidenceInterval = statistic.ConfidenceInterval;
         }

@@ -80,6 +80,9 @@ namespace LunchTime.Client.LunchTimeService {
         private System.TimeSpan MeanField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
+        private System.TimeSpan MedianField;
+        
+        [System.Runtime.Serialization.OptionalFieldAttribute()]
         private System.TimeSpan MinField;
         
         [System.Runtime.Serialization.OptionalFieldAttribute()]
@@ -149,6 +152,19 @@ namespace LunchTime.Client.LunchTimeService {
                 if ((this.MeanField.Equals(value) != true)) {
                     this.MeanField = value;
                     this.RaisePropertyChanged("Mean");
+                }
+            }
+        }
+        
+        [System.Runtime.Serialization.DataMemberAttribute()]
+        public System.TimeSpan Median {
+            get {
+                return this.MedianField;
+            }
+            set {
+                if ((this.MedianField.Equals(value) != true)) {
+                    this.MedianField = value;
+                    this.RaisePropertyChanged("Median");
                 }
             }
         }

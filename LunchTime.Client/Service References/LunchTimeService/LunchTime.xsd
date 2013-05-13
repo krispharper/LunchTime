@@ -19,6 +19,7 @@
       <xs:element minOccurs="0" name="Count" type="xs:int" />
       <xs:element minOccurs="0" name="Max" type="ser:duration" />
       <xs:element minOccurs="0" name="Mean" type="ser:duration" />
+      <xs:element minOccurs="0" name="Median" type="ser:duration" />
       <xs:element minOccurs="0" name="Min" type="ser:duration" />
       <xs:element minOccurs="0" name="Name" nillable="true" type="xs:string" />
       <xs:element minOccurs="0" name="Range" type="xs:int" />

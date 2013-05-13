@@ -422,6 +422,8 @@ namespace LunchTime.Service
 		
 		private System.Nullable<System.TimeSpan> _Mean;
 		
+		private System.Nullable<System.TimeSpan> _Median;
+		
 		private System.Nullable<System.TimeSpan> _StandardDeviation;
 		
 		private string _ConfidenceInterval;
@@ -522,6 +524,22 @@ namespace LunchTime.Service
 				if ((this._Mean != value))
 				{
 					this._Mean = value;
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_Median", DbType="Time")]
+		public System.Nullable<System.TimeSpan> Median
+		{
+			get
+			{
+				return this._Median;
+			}
+			set
+			{
+				if ((this._Median != value))
+				{
+					this._Median = value;
 				}
 			}
 		}
