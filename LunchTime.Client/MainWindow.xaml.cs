@@ -25,13 +25,15 @@ namespace LunchTime.Client
                 using (var client = new LunchTimeService.LunchTimeClient())
                 {
                     var restaurants = client.GetRestaurants().Select(r => r.Name);
-                    this.restaurantsComboBox.ItemsSource = restaurants;
+                    this.summaryComboBox.ItemsSource = restaurants;
+                    this.detailsComboBox.ItemsSource = restaurants;
 
                     var statistics = client.GetStatistics();
-                    this.detailsGrid.ItemsSource = statistics.Select(s => new Statistic(s));
+                    this.statisticsGrid.ItemsSource = statistics.Select(s => new Statistic(s));
                 }
 
-                this.restaurantsComboBox.SelectedIndex = Properties.Settings.Default.SelectedIndex;
+                this.summaryComboBox.SelectedIndex = Properties.Settings.Default.SummaryIndex;
+                this.detailsComboBox.SelectedIndex = Properties.Settings.Default.DetailsIndex;
             }
             catch (Exception ex)
             {
@@ -39,13 +41,13 @@ namespace LunchTime.Client
             }
         }
 
-        private void restaurantsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        private void summaryComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             try
             {
                 using (var client = new LunchTimeService.LunchTimeClient())
                 {
-                    string restaurant = this.restaurantsComboBox.SelectedValue as string;
+                    string restaurant = this.summaryComboBox.SelectedValue as string;
                     Statistic statistic = new Statistic(client.GetStatistic(restaurant));
 
                     if (statistic == null)
@@ -53,12 +55,13 @@ namespace LunchTime.Client
 
                     this.summaryGrid.ItemsSource = (new List<Statistic> { statistic });
 
-                    var arrivalTimes = client.GetArrivalTimes(restaurant);
+                    var arrivalTimes = client.GetArrivalTimes(restaurant)
+                                             .Select(at => at.TimeArrived.TimeOfDay);
 
                     if (arrivalTimes.Count() > 4)
                     {
                         var histogram = new HistogramGenerator(arrivalTimes);
-                        this.dataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
+                        this.summaryDataSeries.ItemsSource = arrivalTimes.GroupBy(at => histogram.GetHistogramBucket(at))
                                                                   .OrderBy(group => group.Key)
                                                                   .Select(group => new
                                                                   {
@@ -68,8 +71,38 @@ namespace LunchTime.Client
                     }
                     else
                     {
-                        this.dataSeries.ItemsSource = null;
+                        this.summaryDataSeries.ItemsSource = null;
                     }
+                }
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.ToString());
+            }
+        }
+
+        private void detailsComboBox_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            try
+            {
+                using (var client = new LunchTimeService.LunchTimeClient())
+                {
+                    string restaurant = this.detailsComboBox.SelectedValue as string;
+                    var arrivalTimes = client.GetArrivalTimes(restaurant)
+                                             .Select(at => new
+                                             {
+                                                 Date = at.TimeArrived.Date,
+                                                 Time = new DateTime(at.TimeArrived.TimeOfDay.Ticks)
+                                             })
+                                             .OrderBy(at => at.Date);
+
+                    this.detailsDataSeries.ItemsSource = arrivalTimes;
+                    this.detailsGrid.ItemsSource = arrivalTimes.Select(at => new
+                                                               {
+                                                                   Date = at.Date.ToString("MM.dd.yyyy"),
+                                                                   Time = Statistic.FormatTimeSpan(at.Time.TimeOfDay)
+                                                               })
+                                                               .Reverse();
                 }
             }
             catch (Exception ex)
@@ -84,7 +117,8 @@ namespace LunchTime.Client
             Properties.Settings.Default.LocationY = this.Top;
             Properties.Settings.Default.Width = this.Width;
             Properties.Settings.Default.Height = this.Height;
-            Properties.Settings.Default.SelectedIndex = this.restaurantsComboBox.SelectedIndex;
+            Properties.Settings.Default.SummaryIndex = this.summaryComboBox.SelectedIndex;
+            Properties.Settings.Default.DetailsIndex = this.detailsComboBox.SelectedIndex;
             Properties.Settings.Default.Save();
         }
     }

@@ -8,13 +8,13 @@ namespace LunchTime.Service
 {
     public class LunchTime : ILunchTime
     {
-        public List<TimeSpan> GetArrivalTimes(string restaurant)
+        public List<ArrivalTimeData> GetArrivalTimes(string restaurant)
         {
             using (var database = new DataClassesDataContext())
             {
                 return database.ArrivalTimes
                                .Where(at => at.Restaurant.Name == restaurant)
-                               .Select(at => at.Time.Value)
+                               .Select(at => new ArrivalTimeData(at))
                                .ToList();
             }
         }

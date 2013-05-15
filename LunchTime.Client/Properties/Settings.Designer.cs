@@ -74,12 +74,24 @@ namespace LunchTime.Client.Properties {
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.DefaultSettingValueAttribute("0")]
-        public int SelectedIndex {
+        public int SummaryIndex {
             get {
-                return ((int)(this["SelectedIndex"]));
+                return ((int)(this["SummaryIndex"]));
             }
             set {
-                this["SelectedIndex"] = value;
+                this["SummaryIndex"] = value;
+            }
+        }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("0")]
+        public int DetailsIndex {
+            get {
+                return ((int)(this["DetailsIndex"]));
+            }
+            set {
+                this["DetailsIndex"] = value;
             }
         }
     }

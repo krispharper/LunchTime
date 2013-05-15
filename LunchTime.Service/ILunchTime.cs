@@ -9,7 +9,7 @@ namespace LunchTime.Service
     public interface ILunchTime
     {
         [OperationContract]
-        List<TimeSpan> GetArrivalTimes(string restaurant);
+        List<ArrivalTimeData> GetArrivalTimes(string restaurant);
 
         [OperationContract]
         List<RestaurantData> GetRestaurants();

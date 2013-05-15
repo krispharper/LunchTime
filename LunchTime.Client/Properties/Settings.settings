@@ -14,7 +14,10 @@
     <Setting Name="Height" Type="System.Double" Scope="User">
       <Value Profile="(Default)">450</Value>
     </Setting>
-    <Setting Name="SelectedIndex" Type="System.Int32" Scope="User">
+    <Setting Name="SummaryIndex" Type="System.Int32" Scope="User">
+      <Value Profile="(Default)">0</Value>
+    </Setting>
+    <Setting Name="DetailsIndex" Type="System.Int32" Scope="User">
       <Value Profile="(Default)">0</Value>
     </Setting>
   </Settings>

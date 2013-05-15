@@ -6,7 +6,7 @@
     <TabControl>
         <TabItem Header="Restaurant Summary">
             <DockPanel HorizontalAlignment="Left">
-                <ComboBox x:Name="restaurantsComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="restaurantsComboBox_SelectionChanged"/>
+                <ComboBox x:Name="summaryComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="summaryComboBox_SelectionChanged"/>
                 <DataGrid x:Name="summaryGrid" AutoGenerateColumns="False" Height="44" DockPanel.Dock="Top" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
                     <DataGrid.Columns>
                         <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
@@ -19,8 +19,8 @@
                         <DataGridTextColumn Binding="{Binding ConfidenceInterval}" Header="95% Confidence Interval" Width="*"/>
                     </DataGrid.Columns>
                 </DataGrid>
-                <chartingToolkit:Chart x:Name="chart">
-                    <chartingToolkit:LineSeries x:Name="dataSeries" IndependentValuePath="Index" DependentValuePath="Value"/>
+                <chartingToolkit:Chart x:Name="summaryChart">
+                    <chartingToolkit:LineSeries x:Name="summaryDataSeries" IndependentValuePath="Index" DependentValuePath="Value"/>
                     <chartingToolkit:Chart.Axes>
                         <chartingToolkit:CategoryAxis Orientation="X" Title="Arrival Time"/>
                         <chartingToolkit:LinearAxis Orientation="Y" Title="Frequency"/>
@@ -33,8 +33,55 @@
                 </chartingToolkit:Chart>
             </DockPanel>
         </TabItem>
+        <TabItem Header="Restaurant Details">
+            <DockPanel>
+                <ComboBox x:Name="detailsComboBox" Width="250" Margin="10,10,0,10" HorizontalAlignment="Left" VerticalAlignment="Center" DockPanel.Dock="Top" SelectionChanged="detailsComboBox_SelectionChanged"/>
+                <DockPanel>
+                    <DataGrid x:Name="detailsGrid" AutoGenerateColumns="False" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True" DockPanel.Dock="Left">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Date}" Header="Date"/>
+                            <DataGridTextColumn Binding="{Binding Time}" Header="Time"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <chartingToolkit:Chart x:Name="detailsChart">
+                        <chartingToolkit:LineSeries x:Name="detailsDataSeries" IndependentValuePath="Date" DependentValuePath="Time"/>
+                        <chartingToolkit:Chart.Axes>
+                            <chartingToolkit:DateTimeAxis Orientation="X" Title="Date">
+                                <chartingToolkit:DateTimeAxis.AxisLabelStyle>
+                                    <Style TargetType="chartingToolkit:DateTimeAxisLabel">
+                                        <Setter Property="Template">
+                                            <Setter.Value>
+                                                <ControlTemplate TargetType="chartingToolkit:AxisLabel">
+                                                    <TextBlock Text="{TemplateBinding FormattedContent}">
+                                                        <TextBlock.LayoutTransform>
+                                                            <RotateTransform Angle="-75"/>
+                                                        </TextBlock.LayoutTransform>
+                                                    </TextBlock>
+                                                </ControlTemplate>
+                                            </Setter.Value>
+                                        </Setter>
+                                    </Style>
+                                </chartingToolkit:DateTimeAxis.AxisLabelStyle>
+                            </chartingToolkit:DateTimeAxis>
+                            <chartingToolkit:DateTimeAxis Orientation="Y" Title="Time" Name="test">
+                                <chartingToolkit:DateTimeAxis.AxisLabelStyle>
+                                    <Style TargetType="chartingToolkit:DateTimeAxisLabel">
+                                        <Setter Property="StringFormat" Value="{}{0:hh\:mm}"/>
+                                    </Style>
+                                </chartingToolkit:DateTimeAxis.AxisLabelStyle>
+                            </chartingToolkit:DateTimeAxis>
+                        </chartingToolkit:Chart.Axes>
+                        <chartingToolkit:Chart.LegendStyle>
+                            <Style TargetType="Control">
+                                <Setter Property="Width" Value="0"/>
+                            </Style>
+                        </chartingToolkit:Chart.LegendStyle>
+                    </chartingToolkit:Chart>
+                </DockPanel>
+            </DockPanel>
+        </TabItem>
         <TabItem Header="Statistics">
-            <DataGrid x:Name="detailsGrid" AutoGenerateColumns="False" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
+            <DataGrid x:Name="statisticsGrid" AutoGenerateColumns="False" ClipboardCopyMode="IncludeHeader" CanUserAddRows="False" IsReadOnly="True">
                 <DataGrid.Columns>
                     <DataGridTextColumn Binding="{Binding Name}" Header="Name"/>
                     <DataGridTextColumn Binding="{Binding Count}" Header="Count"/>
